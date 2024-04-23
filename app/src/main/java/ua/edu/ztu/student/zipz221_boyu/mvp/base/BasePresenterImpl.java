@@ -19,7 +19,7 @@ public abstract class BasePresenterImpl<V extends BaseMvp.BaseView> implements B
     private final CompositeDisposable subscriptions = new CompositeDisposable();
 
     @Override
-    public final void attachView(V view) {
+    public final void attachView(@NonNull V view) {
         viewRef = new WeakReference<>(view);
         withView(this::onViewAttached);
     }
@@ -31,28 +31,31 @@ public abstract class BasePresenterImpl<V extends BaseMvp.BaseView> implements B
     }
 
     @Override
-    public final void withView(NotNullConsumer<V> action) {
+    public final void withView(@NonNull NotNullConsumer<V> action) {
         V view = viewRef != null ? viewRef.get() : null;
         if (view != null) action.accept(view);
     }
 
-    protected void onViewAttached(V view) {
+    protected void onViewAttached(@NonNull V view) {
 
     }
 
+    @NonNull
     protected final ComponentProvider getComponentProvider() {
         return ComponentProvider.Companion.getInstance();
     }
 
+    @NonNull
     protected final Preferences getPreferences() {
         return getComponentProvider().getPreferences();
     }
 
+    @NonNull
     protected final AppSchedulers getSchedulers() {
         return getComponentProvider().getSchedulers();
     }
 
-    protected final void subscriptions(Supplier<Disposable> add) {
+    protected final void subscriptions(@NonNull Supplier<Disposable> add) {
         subscriptions.add(add.get());
     }
 }

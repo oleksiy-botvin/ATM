@@ -14,9 +14,20 @@ import ua.edu.ztu.student.zipz221_boyu.mvp.base.BaseMvp;
 public abstract class BaseFragmentMvp<VB extends ViewBinding, P extends BaseMvp.BasePresenter<V>, V extends BaseMvp.BaseView>
         extends BaseFragment<VB> implements BaseMvp.BaseView {
 
-    protected P presenter;
+    private P presenter;
 
-    protected abstract P presenterInject();
+    @NonNull protected abstract P presenterInject();
+
+    @NonNull
+    public P getPresenter() {
+        return presenter;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        presenter = presenterInject();
+    }
 
     @Nullable
     @Override

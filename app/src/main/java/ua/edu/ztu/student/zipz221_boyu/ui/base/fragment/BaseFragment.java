@@ -15,12 +15,17 @@ import ua.edu.ztu.student.zipz221_boyu.util.function.NotNullConsumer;
 
 public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
 
-    protected VB binding;
+    private VB binding;
 
     @NonNull
     protected abstract ViewBindingUtil.InflaterParent<VB> inflater();
 
-    protected void withBinding(NotNullConsumer<VB> action) {
+    @NonNull
+    public VB getBinding() {
+        return binding;
+    }
+
+    protected void withBinding(@NonNull NotNullConsumer<VB> action) {
         if (binding != null) action.accept(binding);
     }
 

@@ -13,12 +13,17 @@ import ua.edu.ztu.student.zipz221_boyu.util.ViewBindingUtil;
 
 public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActivity {
 
-    protected VB binding;
+    private VB binding;
 
     @NonNull
     protected abstract ViewBindingUtil.Inflater<VB> inflater();
 
-    protected void withBinding(NotNullConsumer<VB> action) {
+    @NonNull
+    public VB getBinding() {
+        return binding;
+    }
+
+    protected void withBinding(@NonNull NotNullConsumer<VB> action) {
         if (binding != null) action.accept(binding);
     }
 

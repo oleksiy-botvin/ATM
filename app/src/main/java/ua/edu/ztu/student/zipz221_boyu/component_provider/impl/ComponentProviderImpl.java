@@ -2,6 +2,8 @@ package ua.edu.ztu.student.zipz221_boyu.component_provider.impl;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import ua.edu.ztu.student.zipz221_boyu.component_provider.ComponentProvider;
 import ua.edu.ztu.student.zipz221_boyu.component_provider.components.AppSchedulers;
 import ua.edu.ztu.student.zipz221_boyu.component_provider.components.Preferences;
@@ -18,12 +20,14 @@ public class ComponentProviderImpl implements ComponentProvider {
         this.context = context;
     }
 
+    @NonNull
     @Override
     public Preferences getPreferences() {
         if (preferences == null) preferences = new PreferencesImpl(context);
         return preferences;
     }
 
+    @NonNull
     @Override
     public AppSchedulers getSchedulers() {
         if (schedulers == null) schedulers = new SchedulersImpl();

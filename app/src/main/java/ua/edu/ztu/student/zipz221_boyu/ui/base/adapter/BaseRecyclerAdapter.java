@@ -18,7 +18,7 @@ public abstract class BaseRecyclerAdapter<VB extends ViewBinding> extends Recycl
     private final List<ViewBindingUtil.InflaterParent<VB>> inflaters = Collections.synchronizedList(new ArrayList<>());
 
     abstract ViewBindingUtil.InflaterParent<VB> inflater(int position);
-    abstract void onBindView(VB binding, int position);
+    abstract void onBindView(@NonNull VB binding, int position);
 
     @Override
     public final int getItemViewType(int position) {

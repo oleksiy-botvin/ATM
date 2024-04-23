@@ -1,5 +1,7 @@
 package ua.edu.ztu.student.zipz221_boyu.mvp.base;
 
+import androidx.annotation.NonNull;
+
 import ua.edu.ztu.student.zipz221_boyu.util.function.NotNullConsumer;
 
 public interface BaseMvp {
@@ -9,9 +11,9 @@ public interface BaseMvp {
     }
 
     interface BasePresenter<V extends  BaseView> {
-        void attachView(V view);
+        void attachView(@NonNull V view);
         void detachView();
-        void withView(NotNullConsumer<V> action);
+        void withView(@NonNull NotNullConsumer<V> action);
 
     }
 }

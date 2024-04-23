@@ -8,17 +8,19 @@ import androidx.viewbinding.ViewBinding;
 
 public class ViewHolder<VB extends ViewBinding> extends RecyclerView.ViewHolder {
 
-    private final VB binding;
+    @NonNull private final VB binding;
 
     public ViewHolder(@NonNull VB binding) {
         super(binding.getRoot());
         this.binding = binding;
     }
 
+    @NonNull
     public VB getBinding() {
         return binding;
     }
 
+    @NonNull
     public Context getContext() {
         return binding.getRoot().getContext();
     }
