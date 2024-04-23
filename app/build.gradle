@@ -42,4 +42,6 @@ dependencies {
     implementation libs.navigation.fragment
     implementation libs.navigation.ui
     implementation libs.preference
+    implementation libs.rxjava2.java
+    implementation libs.rxjava2.android
 }

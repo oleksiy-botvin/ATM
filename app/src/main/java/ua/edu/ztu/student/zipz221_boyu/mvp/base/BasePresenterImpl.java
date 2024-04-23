@@ -1,14 +1,22 @@
 package ua.edu.ztu.student.zipz221_boyu.mvp.base;
 
-import java.lang.ref.WeakReference;
+import androidx.annotation.NonNull;
 
+import java.lang.ref.WeakReference;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import ua.edu.ztu.student.zipz221_boyu.component_provider.ComponentProvider;
+import ua.edu.ztu.student.zipz221_boyu.component_provider.components.AppSchedulers;
 import ua.edu.ztu.student.zipz221_boyu.component_provider.components.Preferences;
 import ua.edu.ztu.student.zipz221_boyu.util.function.NotNullConsumer;
 
 public abstract class BasePresenterImpl<V extends BaseMvp.BaseView> implements BaseMvp.BasePresenter<V> {
 
     private WeakReference<V> viewRef;
+    private final CompositeDisposable subscriptions = new CompositeDisposable();
 
     @Override
     public final void attachView(V view) {
@@ -38,5 +46,13 @@ public abstract class BasePresenterImpl<V extends BaseMvp.BaseView> implements B
 
     protected final Preferences getPreferences() {
         return getComponentProvider().getPreferences();
+    }
+
+    protected final AppSchedulers getSchedulers() {
+        return getComponentProvider().getSchedulers();
+    }
+
+    protected final void subscriptions(Supplier<Disposable> add) {
+        subscriptions.add(add.get());
     }
 }

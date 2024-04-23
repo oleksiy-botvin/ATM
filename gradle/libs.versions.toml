@@ -7,6 +7,8 @@ core = "1.13.0"
 constraintlayout = "2.1.4"
 navigation = "2.7.7"
 preference = "1.2.1"
+rxjava2Java = "2.2.21"
+rxjava2Android = "2.1.1"
 
 [libraries]
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
@@ -17,6 +19,8 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigation" }
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigation" }
 preference = { group = "androidx.preference", name = "preference", version.ref = "preference" }
+rxjava2-java = { group = "io.reactivex.rxjava2", name = "rxjava", version.ref = "rxjava2Java" }
+rxjava2-android = { group = "io.reactivex.rxjava2", name = "rxandroid", version.ref = "rxjava2Android" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
