@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 
 import ua.edu.ztu.student.zipz221_boyu.util.ViewBindingUtil;
-import ua.edu.ztu.student.zipz221_boyu.util.actions.ActionWithIfNonNull;
+import ua.edu.ztu.student.zipz221_boyu.util.function.NotNullConsumer;
 
 public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
 
@@ -20,8 +20,8 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     @NonNull
     protected abstract ViewBindingUtil.InflaterParent<VB> inflater();
 
-    protected void withBinding(ActionWithIfNonNull<VB> action) {
-        if (binding != null) action.execute(binding);
+    protected void withBinding(NotNullConsumer<VB> action) {
+        if (binding != null) action.accept(binding);
     }
 
     @Nullable

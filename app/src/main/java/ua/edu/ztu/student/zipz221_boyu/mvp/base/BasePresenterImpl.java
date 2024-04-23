@@ -4,7 +4,7 @@ import java.lang.ref.WeakReference;
 
 import ua.edu.ztu.student.zipz221_boyu.component_provider.ComponentProvider;
 import ua.edu.ztu.student.zipz221_boyu.component_provider.components.Preferences;
-import ua.edu.ztu.student.zipz221_boyu.util.actions.ActionWithIfNonNull;
+import ua.edu.ztu.student.zipz221_boyu.util.function.NotNullConsumer;
 
 public abstract class BasePresenterImpl<V extends BaseMvp.BaseView> implements BaseMvp.BasePresenter<V> {
 
@@ -23,9 +23,9 @@ public abstract class BasePresenterImpl<V extends BaseMvp.BaseView> implements B
     }
 
     @Override
-    public final void withView(ActionWithIfNonNull<V> action) {
+    public final void withView(NotNullConsumer<V> action) {
         V view = viewRef != null ? viewRef.get() : null;
-        if (view != null) action.execute(view);
+        if (view != null) action.accept(view);
     }
 
     protected void onViewAttached(V view) {

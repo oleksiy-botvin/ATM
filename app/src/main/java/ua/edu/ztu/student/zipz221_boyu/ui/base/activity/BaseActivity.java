@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewbinding.ViewBinding;
 
-import ua.edu.ztu.student.zipz221_boyu.util.actions.ActionWithIfNonNull;
+import ua.edu.ztu.student.zipz221_boyu.util.function.NotNullConsumer;
 import ua.edu.ztu.student.zipz221_boyu.util.ViewBindingUtil;
 
 public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActivity {
@@ -18,8 +18,8 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
     @NonNull
     protected abstract ViewBindingUtil.Inflater<VB> inflater();
 
-    protected void withBinding(ActionWithIfNonNull<VB> action) {
-        if (binding != null) action.execute(binding);
+    protected void withBinding(NotNullConsumer<VB> action) {
+        if (binding != null) action.accept(binding);
     }
 
     @Override

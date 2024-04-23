@@ -1,6 +1,6 @@
 package ua.edu.ztu.student.zipz221_boyu.mvp.base;
 
-import ua.edu.ztu.student.zipz221_boyu.util.actions.ActionWithIfNonNull;
+import ua.edu.ztu.student.zipz221_boyu.util.function.NotNullConsumer;
 
 public interface BaseMvp {
 
@@ -11,7 +11,7 @@ public interface BaseMvp {
     interface BasePresenter<V extends  BaseView> {
         void attachView(V view);
         void detachView();
-        void withView(ActionWithIfNonNull<V> action);
+        void withView(NotNullConsumer<V> action);
 
     }
 }
