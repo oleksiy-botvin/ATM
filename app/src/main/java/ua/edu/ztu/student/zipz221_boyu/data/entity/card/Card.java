@@ -1,32 +1,57 @@
 package ua.edu.ztu.student.zipz221_boyu.data.entity.card;
 
+import androidx.annotation.NonNull;
+
 import ua.edu.ztu.student.zipz221_boyu.util.AppUtil;
 
-abstract class Card {
+public abstract class Card {
 
-    private final CardNumber number;
-    private final ExpirationDate expirationDate;
-    private final String cvv;
+    @NonNull private final CardNumber number;
+    @NonNull private final ExpirationDate expirationDate;
+    @NonNull private final String cvv;
+    private boolean isLocked = false;
 
-    Card(CardNumber number) {
+    Card(@NonNull CardNumber number) {
         this(number, new ExpirationDate());
     }
 
-    Card(CardNumber number, ExpirationDate expirationDate) {
+    Card(@NonNull CardNumber number, @NonNull ExpirationDate expirationDate) {
         this.number = number;
         this.expirationDate = expirationDate;
         cvv = AppUtil.randomNumber(3);
     }
 
-    public CardNumber getNumber() {
+    @NonNull
+    public final CardNumber getNumber() {
         return number;
     }
 
-    public ExpirationDate getExpirationDate() {
+    @NonNull
+    public final ExpirationDate getExpirationDate() {
         return expirationDate;
     }
 
-    public String getCvv() {
+    @NonNull
+    public final String getCvv() {
         return cvv;
+    }
+
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        return number.equals(((Card) o).number);
+    }
+
+    @Override
+    public int hashCode() {
+        return number.hashCode();
     }
 }

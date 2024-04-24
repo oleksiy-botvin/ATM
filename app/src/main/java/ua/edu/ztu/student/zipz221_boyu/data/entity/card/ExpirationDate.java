@@ -23,7 +23,7 @@ public class ExpirationDate {
 
     public ExpirationDate(
             @IntRange(from = 1, to = 12) int month,
-            @IntRange(from = 2000, to = Integer.MAX_VALUE)int year
+            @IntRange(from = 2000, to = Integer.MAX_VALUE) int year
     ) {
         this.month = month;
         this.year = year;
@@ -45,7 +45,6 @@ public class ExpirationDate {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (o == null) return false;
 
         if (o instanceof ExpirationDate) {

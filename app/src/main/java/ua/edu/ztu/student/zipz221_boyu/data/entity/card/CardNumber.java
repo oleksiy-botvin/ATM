@@ -16,7 +16,7 @@ public class CardNumber {
     private final String number;
     private final String value;
 
-    CardNumber(
+    public CardNumber(
             @IntRange(from = 0, to = 9) int paymentSystem,
             @Size(min = 5, max = 5) String bin,
             @Size(min = 10, max = 10) String number
@@ -54,6 +54,17 @@ public class CardNumber {
     @Override
     public String toString() {
         return value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        return value.equals(((CardNumber) o).value);
+    }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
     }
 
     private static void checkNumber(String number, String name, int length) throws IllegalArgumentException {
