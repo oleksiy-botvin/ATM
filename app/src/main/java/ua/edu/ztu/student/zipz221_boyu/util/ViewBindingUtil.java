@@ -4,29 +4,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 
 import ua.edu.ztu.student.zipz221_boyu.R;
 
 public class ViewBindingUtil {
 
-    public static <VB extends ViewBinding> String getId(VB binding) {
+    public static <VB extends ViewBinding> String getId(@NonNull VB binding) {
         return binding.getClass().getName() +
                 '@' +
                 Integer.toHexString(System.identityHashCode(binding));
     }
 
-    public static <VB extends ViewBinding> void saveViewBindingId(VB binding, String id) {
-        saveViewBindingId(binding.getRoot(), id);
+    public static <VB extends ViewBinding> String saveViewBindingId(@NonNull VB binding) {
+        String id = getId(binding);
+        if (!PrimitivesUtil.isBlank(id)) binding.getRoot().setTag(R.id.tag_view_binding_root, id);
+        return id;
     }
 
-    public static void saveViewBindingId(View view, String id) {
-        if (view == null || PrimitivesUtil.isBlank(id)) return;
-        view.setTag(R.id.tag_view_binding_root, id);
-    }
-
-    public static View findViewBindingRoot(View view, String id) {
-        if (PrimitivesUtil.isBlank(id)) return null;
+    @Nullable
+    public static View findViewBindingRoot(@Nullable View view, @NonNull String id) {
+        if (view == null || PrimitivesUtil.isBlank(id)) return null;
 
         for (View v : ViewUtil.allViews(view)) {
             Object tag = v.getTag(R.id.tag_view_binding_root);
