@@ -14,4 +14,14 @@ public class PreferencesImpl implements Preferences {
     public PreferencesImpl(Context context) {
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
+
+    @Override
+    public int getATMBalance() {
+        return preferences.getInt("atm_balance", 0);
+    }
+
+    @Override
+    public void setATMBalance(int value) {
+        preferences.edit().putInt("atm_balance", value).apply();
+    }
 }
