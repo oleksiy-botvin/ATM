@@ -4,11 +4,15 @@ import androidx.annotation.NonNull;
 
 import ua.edu.ztu.student.zipz221_boyu.component_provider.components.AppSchedulers;
 import ua.edu.ztu.student.zipz221_boyu.component_provider.components.Preferences;
+import ua.edu.ztu.student.zipz221_boyu.component_provider.components.Repositories;
+import ua.edu.ztu.student.zipz221_boyu.component_provider.components.UseCases;
 
 public interface ComponentProvider {
 
     @NonNull Preferences getPreferences();
     @NonNull AppSchedulers getSchedulers();
+    @NonNull Repositories getRepositories();
+    @NonNull UseCases getUseCases();
 
 
     class Companion {

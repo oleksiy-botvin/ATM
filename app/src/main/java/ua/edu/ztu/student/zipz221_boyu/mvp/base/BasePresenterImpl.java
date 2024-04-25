@@ -11,6 +11,8 @@ import io.reactivex.disposables.Disposable;
 import ua.edu.ztu.student.zipz221_boyu.component_provider.ComponentProvider;
 import ua.edu.ztu.student.zipz221_boyu.component_provider.components.AppSchedulers;
 import ua.edu.ztu.student.zipz221_boyu.component_provider.components.Preferences;
+import ua.edu.ztu.student.zipz221_boyu.component_provider.components.Repositories;
+import ua.edu.ztu.student.zipz221_boyu.component_provider.components.UseCases;
 import ua.edu.ztu.student.zipz221_boyu.util.function.NotNullConsumer;
 
 public abstract class BasePresenterImpl<V extends BaseMvp.BaseView> implements BaseMvp.BasePresenter<V> {
@@ -53,6 +55,16 @@ public abstract class BasePresenterImpl<V extends BaseMvp.BaseView> implements B
     @NonNull
     protected final AppSchedulers getSchedulers() {
         return getComponentProvider().getSchedulers();
+    }
+
+    @NonNull
+    protected final Repositories getRepositories() {
+        return getComponentProvider().getRepositories();
+    }
+
+    @NonNull
+    protected final UseCases getUseCases() {
+        return getComponentProvider().getUseCases();
     }
 
     protected final void subscriptions(@NonNull Supplier<Disposable> add) {
