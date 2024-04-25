@@ -81,7 +81,7 @@ public class Account {
     }
 
     private void addCard(@NonNull Card card) {
-        int index = cards.indexOf(card);
-        if (index < 0) cards.add(card); else cards.set(index, card);
+        if (cards.contains(card)) return;
+        cards.add(card);
     }
 }

@@ -9,10 +9,11 @@ public class AppUtil {
 
         Random random = new Random();
 
-        String number;
-        do number = String.valueOf(random.nextInt(9));
-        while (number.length() < length);
+        int number = random.nextInt((int) Math.pow(10, length) - 1);
+        StringBuilder value = new StringBuilder(String.valueOf(number));
+        do value.insert(0, "0");
+        while (value.length() < length);
 
-        return number;
+        return value.toString();
     }
 }

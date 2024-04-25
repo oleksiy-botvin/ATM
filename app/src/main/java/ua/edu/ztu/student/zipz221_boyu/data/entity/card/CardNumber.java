@@ -4,9 +4,11 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Size;
 
+import java.io.Serializable;
+
 import ua.edu.ztu.student.zipz221_boyu.util.PrimitivesUtil;
 
-public class CardNumber {
+public class CardNumber implements Serializable {
 
     @IntRange(from = 0, to = 9)
     private final int paymentSystem;
@@ -31,7 +33,7 @@ public class CardNumber {
         this.number = number;
 
         StringBuilder value = new StringBuilder(String.valueOf(paymentSystem));
-        for (char c : bin.toCharArray()) {
+        for (char c : (bin + number).toCharArray()) {
             value.append(c);
             if (value.length() % 4 == 0) value.append(" ");
         }

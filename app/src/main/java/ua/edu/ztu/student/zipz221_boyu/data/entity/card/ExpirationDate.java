@@ -40,7 +40,7 @@ public class ExpirationDate {
     @NonNull
     @Override
     public final String toString() {
-        return month + "/" + year;
+        return dataFormat(month) + "/" + dataFormat(year);
     }
 
     @Override
@@ -59,5 +59,18 @@ public class ExpirationDate {
     @Override
     public int hashCode() {
         return Objects.hash(toString());
+    }
+
+    @NonNull
+    private String dataFormat(int value) {
+        String it = String.valueOf(value);
+        switch (it.length()) {
+            case 0:
+                return "00";
+            case 1:
+                return "0" + it;
+            default:
+                return it.substring(it.length() - 2);
+        }
     }
 }
