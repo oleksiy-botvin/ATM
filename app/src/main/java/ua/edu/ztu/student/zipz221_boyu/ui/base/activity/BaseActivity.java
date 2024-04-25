@@ -1,11 +1,16 @@
 package ua.edu.ztu.student.zipz221_boyu.ui.base.activity;
 
+import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Window;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.SystemBarStyle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowCompat;
 import androidx.viewbinding.ViewBinding;
 
 import ua.edu.ztu.student.zipz221_boyu.util.function.NotNullConsumer;
@@ -30,7 +35,20 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        EdgeToEdge.enable(
+                this,
+                SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT, it -> {
+                    Window window = getWindow();
+                    if (window != null) {
+                        return WindowCompat
+                                .getInsetsController(window, window.getDecorView())
+                                .isAppearanceLightStatusBars();
+                    } else {
+                        return (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) ==
+                                Configuration.UI_MODE_NIGHT_YES;
+                    }
+                })
+        );
         binding = inflater().inflate(getLayoutInflater());
         setContentView(binding.getRoot());
     }
