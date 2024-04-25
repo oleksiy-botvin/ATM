@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="ua.edu.ztu.student.zipz221_boyu.ui.fragment.LoginFragment"
+        android:label="activity_main"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_menu"
+            app:destination="@id/menuFragment"
+            app:popUpTo="@id/loginFragment"
+            app:enterAnim="@anim/slide_from_end_to_center"
+            app:exitAnim="@anim/slide_from_center_to_start"
+            app:popEnterAnim="@anim/slide_from_start_to_center"
+            app:popExitAnim="@anim/slide_from_center_to_end" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="ua.edu.ztu.student.zipz221_boyu.ui.fragment.MenuFragment"
+        android:label="MenuFragment"
+        tools:layout="@layout/fragment_menu" >
+        <argument
+            android:name="arg"
+            app:argType="ua.edu.ztu.student.zipz221_boyu.data.entity.card.CardNumber"
+            app:nullable="false" />
+    </fragment>
+</navigation>

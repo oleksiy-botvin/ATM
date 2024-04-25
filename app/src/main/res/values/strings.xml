@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">ATM</string>
+
+    <string name="inset_card">Вставити карту</string>
+    <string name="hint_not_ready_to_work">Вибачте, банкомат тимчасово не працює.\n\nМи працюємо над вирішенням проблеми</string>
+    <string name="hint_run_out_of_money">У банкоматі закінчилися гроші\n\nБудь ласка, зачекайте на завершення технічного обслуговування</string>
+    <string name="account_number_with_colon">Рахунку №:</string>
+    <string name="debit">Debit</string>
+    <string name="credit">Credit</string>
+    <string name="pin_with_colon">PIN: %s</string>
+    <string name="amount_in_uah">%.2f грн</string>
+    <string name="card_has_expired">Термін дії картки закінчився.\n\nЗверніться до відділення банку</string>
+    <string name="view_balance">Переглянути баланс</string>
+    <string name="withdraw_cash">Зняти готівку</string>
+    <string name="money_transfer">Переказ коштів</string>
+    <string name="top_up_account">Поповнити рахунок</string>
 </resources>
