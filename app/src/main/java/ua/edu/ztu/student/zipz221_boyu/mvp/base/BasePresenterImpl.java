@@ -28,6 +28,7 @@ public abstract class BasePresenterImpl<V extends BaseMvp.BaseView> implements B
 
     @Override
     public final void detachView() {
+        subscriptions.clear();
         if (viewRef != null) viewRef.clear();
         viewRef = null;
     }
