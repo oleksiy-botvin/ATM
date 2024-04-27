@@ -116,12 +116,7 @@ public class LoginFragment
 
     @Override
     public void openMenuScreen(Card it) {
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("args", it.getNumber());
-        NavHostFragment.findNavController(this).navigate(
-                R.id.action_login_to_menu,
-                bundle
-        );
+        navigate(LoginFragmentDirections.actionLoginToMenu(it.getNumber()));
     }
 
     @Override
