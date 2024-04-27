@@ -26,8 +26,7 @@ public class RequestMaintenanceUseCase implements WithoutArgUseCase<Observable<L
     @NonNull
     @Override
     public Observable<Long> invoke() {
-        return Observable
-                .intervalRange(0, 60, 0, 1, TimeUnit.SECONDS)
+        return Observable.intervalRange(0, 60, 0, 1, TimeUnit.SECONDS)
                 .map(it -> 60 - it)
                 .flatMapSingle(this::check);
     }

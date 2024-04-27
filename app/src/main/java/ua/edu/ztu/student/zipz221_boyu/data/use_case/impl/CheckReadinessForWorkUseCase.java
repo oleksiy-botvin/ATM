@@ -25,8 +25,7 @@ public class CheckReadinessForWorkUseCase implements WithoutArgUseCase<Completab
     @NonNull
     @Override
     public Completable invoke() {
-        return Single
-                .fromCallable(() -> getPreferences().getATMBalance())
+        return Single.fromCallable(() -> getPreferences().getATMBalance())
                 .map(this::checkBalance)
                 .subscribeOn(getSchedulers().bank())
                 .observeOn(getSchedulers().io())
