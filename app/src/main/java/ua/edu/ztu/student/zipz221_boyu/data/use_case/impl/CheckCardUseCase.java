@@ -9,6 +9,7 @@ import ua.edu.ztu.student.zipz221_boyu.component_provider.ComponentProvider;
 import ua.edu.ztu.student.zipz221_boyu.component_provider.components.AppSchedulers;
 import ua.edu.ztu.student.zipz221_boyu.data.entity.card.Card;
 import ua.edu.ztu.student.zipz221_boyu.data.entity.card.ExpirationDate;
+import ua.edu.ztu.student.zipz221_boyu.data.exceptions.CardBlockedException;
 import ua.edu.ztu.student.zipz221_boyu.data.exceptions.CardHasExpiredException;
 import ua.edu.ztu.student.zipz221_boyu.data.use_case.WithArgUseCase;
 
@@ -23,7 +24,9 @@ public class CheckCardUseCase implements WithArgUseCase<Card, Single<Card>> {
     @Override
     public Single<Card> invoke(@NonNull Card arg) {
         return Single.fromCallable(() -> {
+            if (arg.isLocked()) throw new CardBlockedException();
             checkExpirationDate(arg.getExpirationDate());
+            ComponentProvider.Companion.getInstance().getPreferences().clearAttemptsEnterPIN();
             return arg;
         }).subscribeOn(getSchedulers().io());
     }
