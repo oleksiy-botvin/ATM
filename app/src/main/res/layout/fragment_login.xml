@@ -27,7 +27,7 @@
         android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-medium"
         android:textAlignment="center"
-        android:textColor="@color/congo_pink"
+        android:textColor="?attr/colorError"
         android:textSize="16sp"
         android:visibility="gone"
         app:autoSizeMaxTextSize="16sp"

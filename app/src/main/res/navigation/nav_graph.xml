@@ -25,9 +25,99 @@
         android:name="ua.edu.ztu.student.zipz221_boyu.ui.fragment.MenuFragment"
         android:label="MenuFragment"
         tools:layout="@layout/fragment_menu" >
+
         <argument
             android:name="arg"
             app:argType="ua.edu.ztu.student.zipz221_boyu.data.entity.card.CardNumber"
+            app:nullable="false"/>
+
+        <action
+            android:id="@+id/action_menu_to_enter_pin"
+            app:destination="@id/enterPINFragment"
+            app:popUpTo="@id/menuFragment"
+            app:enterAnim="@anim/slide_from_end_to_center"
+            app:exitAnim="@anim/slide_from_center_to_start"
+            app:popEnterAnim="@anim/slide_from_start_to_center"
+            app:popExitAnim="@anim/slide_from_center_to_end" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/enterPINFragment"
+        android:name="ua.edu.ztu.student.zipz221_boyu.ui.fragment.EnterPINFragment"
+        android:label="EnterPINFragment"
+        tools:layout="@layout/fragment_enter_pin" >
+
+        <argument
+            android:name="arg"
+            app:argType="ua.edu.ztu.student.zipz221_boyu.data.entity.operation.Operation"
             app:nullable="false" />
+
+        <action
+            android:id="@+id/action_enterPIN_to_error"
+            app:destination="@id/errorFragment"
+            app:popUpTo="@id/menuFragment"
+            app:enterAnim="@anim/slide_from_end_to_center"
+            app:exitAnim="@anim/slide_from_center_to_start"
+            app:popEnterAnim="@anim/slide_from_start_to_center"
+            app:popExitAnim="@anim/slide_from_center_to_end" />
+
+        <action
+            android:id="@+id/action_enterPIN_to_performOperation"
+            app:destination="@id/performOperationFragment"
+            app:popUpTo="@id/menuFragment"
+            app:enterAnim="@anim/slide_from_end_to_center"
+            app:exitAnim="@anim/slide_from_center_to_start"
+            app:popEnterAnim="@anim/slide_from_start_to_center"
+            app:popExitAnim="@anim/slide_from_center_to_end" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/errorFragment"
+        android:name="ua.edu.ztu.student.zipz221_boyu.ui.fragment.ErrorFragment"
+        android:label="ErrorFragment"
+        tools:layout="@layout/fragment_error" >
+
+        <argument
+            android:name="arg"
+            app:argType="ua.edu.ztu.student.zipz221_boyu.data.entity.operation.Operation$Error" />
+
+        <action
+            android:id="@+id/action_error_to_menu"
+            app:destination="@id/menuFragment"
+            app:popUpTo="@id/loginFragment"
+            app:enterAnim="@anim/slide_from_end_to_center"
+            app:exitAnim="@anim/slide_from_center_to_start"
+            app:popEnterAnim="@anim/slide_from_start_to_center"
+            app:popExitAnim="@anim/slide_from_center_to_end" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/performOperationFragment"
+        android:name="ua.edu.ztu.student.zipz221_boyu.ui.fragment.PerformOperationFragment"
+        android:label="PerformOperationFragment"
+        tools:layout="@layout/fragment_perform_operation" >
+
+        <argument
+            android:name="arg"
+            app:argType="ua.edu.ztu.student.zipz221_boyu.data.entity.operation.Operation"
+            app:nullable="false" />
+
+        <action
+            android:id="@+id/action_performOperation_to_menu"
+            app:destination="@id/menuFragment"
+            app:popUpTo="@id/loginFragment"
+            app:enterAnim="@anim/slide_from_end_to_center"
+            app:exitAnim="@anim/slide_from_center_to_start"
+            app:popEnterAnim="@anim/slide_from_start_to_center"
+            app:popExitAnim="@anim/slide_from_center_to_end" />
+
+        <action
+            android:id="@+id/action_performOperation_to_error"
+            app:destination="@id/errorFragment"
+            app:popUpTo="@id/menuFragment"
+            app:enterAnim="@anim/slide_from_end_to_center"
+            app:exitAnim="@anim/slide_from_center_to_start"
+            app:popEnterAnim="@anim/slide_from_start_to_center"
+            app:popExitAnim="@anim/slide_from_center_to_end" />
     </fragment>
 </navigation>

@@ -4,7 +4,8 @@
         <!-- Customize your light theme here. -->
 
         <item name="colorPrimary">@color/raisin_black</item>
-        <item name="colorOnSurface">@color/white</item>
+        <item name="colorError">@color/congo_pink</item>
+        <item name="colorOnError">@color/fire_opal</item>
 
         <item name="android:colorBackground">@color/cultured</item>
         <item name="android:windowLightStatusBar">true</item>

@@ -14,4 +14,23 @@
     <string name="withdraw_cash">Зняти готівку</string>
     <string name="money_transfer">Переказ коштів</string>
     <string name="top_up_account">Поповнити рахунок</string>
+    <string name="to_continue">Продовжити</string>
+    <string name="enter_pin">Введіть ПІН-код</string>
+    <string name="enter_new_pin">Введіть новий PIN-код</string>
+    <string name="change_pin">Змінити ПІН-код</string>
+    <string name="entered_incorrect_pin">Ви ввели невірний PIN-код</string>
+    <string name="last_attempt_remains">Залишилась остання спроба!!!</string>
+    <string name="complete_work">Завершити роботу</string>
+    <string name="go_to_menu">Перейти до головного меню</string>
+    <string name="go_back_to_previous_menu">Повернутися до попереднього меню</string>
+    <string name="return_to_previous_menu">Перейти до головного меню</string>
+    <string name="card_is_blocked">Картка заблокована</string>
+    <string name="message_card_is_blocked">Ви тричі ввели невірний ПІН-код, зверніться до найближчого відділення банку</string>
+    <string name="an_error_occurred">Виникла помилка</string>
+    <string name="error_message_view_balance">Не вдалося отримати Ваш поточний баланс.</string>
+    <string name="error_message_withdraw_cash">Не вдалося зарахувати кошти на Ваш рахунок.</string>
+    <string name="error_message_top_up_account">Не вдалося зняти кошти з Вашого рахунок.</string>
+    <string name="error_message_change_pin">Не вдалося змінити ПІН-код.</string>
+    <string name="error_message_an_unexpected_error_occurred">Сталася неочікувана помилка.</string>
+    <string name="try_again_or_contact_bank">Будь ласка спробуйте ще раз. Якщо помилка не зникає, зверніться до найближчого відділення банку</string>
 </resources>
