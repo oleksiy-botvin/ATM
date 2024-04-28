@@ -6,9 +6,8 @@ import android.view.inputmethod.EditorInfo;
 
 import androidx.annotation.NonNull;
 
-import ua.edu.ztu.student.zipz221_boyu.R;
 import ua.edu.ztu.student.zipz221_boyu.data.entity.operation.Operation;
-import ua.edu.ztu.student.zipz221_boyu.databinding.FragmentWithdrawCashBinding;
+import ua.edu.ztu.student.zipz221_boyu.databinding.FragmentEnterSumBinding;
 import ua.edu.ztu.student.zipz221_boyu.mvp.screen.enter_sum.EnterSumMvp;
 import ua.edu.ztu.student.zipz221_boyu.mvp.screen.enter_sum.EnterSumPresenter;
 import ua.edu.ztu.student.zipz221_boyu.ui.base.fragment.BaseFragmentMvp;
@@ -16,13 +15,13 @@ import ua.edu.ztu.student.zipz221_boyu.util.PrimitivesUtil;
 import ua.edu.ztu.student.zipz221_boyu.util.ViewBindingUtil;
 
 public class EnterSumFragment
-        extends BaseFragmentMvp<FragmentWithdrawCashBinding, EnterSumMvp.Presenter, EnterSumMvp.View>
+        extends BaseFragmentMvp<FragmentEnterSumBinding, EnterSumMvp.Presenter, EnterSumMvp.View>
         implements EnterSumMvp.View {
 
     @NonNull
     @Override
-    protected ViewBindingUtil.InflaterParent<FragmentWithdrawCashBinding> inflater() {
-        return FragmentWithdrawCashBinding::inflate;
+    protected ViewBindingUtil.InflaterParent<FragmentEnterSumBinding> inflater() {
+        return FragmentEnterSumBinding::inflate;
     }
 
     @NonNull
@@ -79,6 +78,9 @@ public class EnterSumFragment
 
     @Override
     public void showEnterPINScreen(Operation.Transaction operation) {
-        navigate(EnterSumFragmentDirections.actionEnterSumToEnterPIN(operation));
+        navigate(operation instanceof Operation.Transaction.WithdrawCash
+                ? EnterSumFragmentDirections.actionEnterSumToEnterPIN(operation)
+                : EnterSumFragmentDirections.actionEnterSumToPerformOperation(operation)
+        );
     }
 }

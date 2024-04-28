@@ -30,7 +30,7 @@ public abstract class Operation implements Serializable {
 
     public static class Transaction extends Operation {
 
-        @IntRange(from = 0) public int sum = 0;
+        @IntRange(from = 0) private int sum = 0;
 
         protected Transaction(@NonNull CardNumber number) {
             super(number);

@@ -16,13 +16,13 @@ import ua.edu.ztu.student.zipz221_boyu.data.repository.impl.AccountsRepository;
 public class RepositoriesImpl implements Repositories {
     @NonNull
     @Override
-    public WithoutArgRepository<Single<List<Account>>> getAccounts() {
+    public WithoutArgRepository<Single<List<Account>>> accounts() {
         return new AccountsRepository();
     }
 
     @NonNull
     @Override
-    public WithArgRepository<CardNumber, Single<Account>> getAccount() {
+    public WithArgRepository<CardNumber, Single<Account>> account() {
         return new AccountRepository();
     }
 }

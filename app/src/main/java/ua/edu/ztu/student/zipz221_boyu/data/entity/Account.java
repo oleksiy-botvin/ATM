@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import ua.edu.ztu.student.zipz221_boyu.data.entity.card.Card;
 import ua.edu.ztu.student.zipz221_boyu.data.entity.card.CardNumber;
@@ -32,8 +31,8 @@ public class Account {
         return balance;
     }
 
-    public void setBalance(float balance) {
-        this.balance = balance;
+    public void replenishBalance(float value) {
+        this.balance += value;
     }
 
     @NonNull
@@ -75,9 +74,9 @@ public class Account {
         return credit == null ? 0 : credit.getBalance();
     }
 
-    public void setCreditBalance(@NonNull CardNumber number, float balance) {
+    public float replenishCreditBalance(@NonNull CardNumber number, float sum) {
         CreditBalance credit = creditBalances.get(number);
-        if (credit != null) credit.setBalance(balance);
+        return credit == null ? sum : credit.replenishBalance(sum);
     }
 
     private void addCard(@NonNull Card card) {

@@ -24,7 +24,9 @@ public class CreditBalance {
         return balance;
     }
 
-    public void setBalance(float balance) {
-        this.balance = balance;
+    public float replenishBalance(float sum) {
+        float it = balance + sum;
+        balance = it > limit ? limit : it;
+        return it > limit ? it - limit : 0;
     }
 }

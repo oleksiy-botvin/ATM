@@ -15,7 +15,7 @@ public class ChangePINUseCase implements WithArgUseCase<Operation.ChangePIN, Sin
     public Single<OperationResult.Success> invoke(@NonNull Operation.ChangePIN arg) {
         return ComponentProvider.Companion.getInstance()
                 .getRepositories()
-                .getAccount()
+                .account()
                 .invoke(arg.getNumber())
                 .map(it -> {
                     it.setCardPin(arg.getNumber(), arg.getNewPin());

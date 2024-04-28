@@ -43,4 +43,10 @@
     <string name="available">Доступно</string>
     <string name="credit_limit">Кредитний ліміт</string>
     <string name="enter_amount">Введіть суму та натисніть \"Продовжити\"</string>
+    <string name="operation_completed">Операція виконана</string>
+    <string name="pin_successfully_changed">Ваш PIN-код успішно змінено на новий</string>
+    <string name="hint_take_money">Не забудьте забрати гроші</string>
+    <string name="account_successfully_topped_up">Ваш рахунок успішно поповнено</string>
+    <string name="not_enough_funds_in_atm">У банкоматі недостатньо коштів для здійснення операції. Максимальна сума: %s</string>
+    <string name="account_does_not_have_enough_funds">На Вашому рахунку недостатньо коштів для здійснення операції</string>
 </resources>

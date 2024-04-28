@@ -25,7 +25,7 @@ public class BankApi {
         String bin = "16258";
         Account account = new Account();
 
-        account.setBalance(10000);
+        account.replenishBalance(10000);
         account.addDebitCard(new DebitCard(new CardNumber(5, bin, "0000000001")));
         account.addCreditCard(
                 new CreditCard(new CardNumber(3, bin, "0000000002")),
@@ -34,7 +34,7 @@ public class BankApi {
         accounts.add(account);
 
         account = new Account();
-        account.setBalance(0);
+        account.replenishBalance(0);
         account.addCreditCard(
                 new CreditCard(new CardNumber(5, bin, "0000000003")),
                 new CreditBalance(4000)
@@ -43,7 +43,7 @@ public class BankApi {
 
         bin = "24167";
         account = new Account();
-        account.setBalance(15000);
+        account.replenishBalance(15000);
         account.addDebitCard(new DebitCard(new CardNumber(5, bin, "0000000001")));
         account.addDebitCard(
                 new DebitCard(

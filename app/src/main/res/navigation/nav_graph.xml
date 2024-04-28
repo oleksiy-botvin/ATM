@@ -99,6 +99,15 @@
             android:name="arg"
             app:argType="ua.edu.ztu.student.zipz221_boyu.data.entity.operation.OperationError" />
 
+        <action
+            android:id="@+id/action_error_go_back_to_enterSum"
+            app:destination="@id/enterSumFragment"
+            app:popUpTo="@id/menuFragment"
+            app:enterAnim="@anim/slide_from_start_to_center"
+            app:exitAnim="@anim/slide_from_center_to_end"
+            app:popEnterAnim="@anim/slide_from_start_to_center"
+            app:popExitAnim="@anim/slide_from_center_to_end" />
+
     </fragment>
 
     <fragment
@@ -147,7 +156,7 @@
         android:id="@+id/enterSumFragment"
         android:name="ua.edu.ztu.student.zipz221_boyu.ui.fragment.EnterSumFragment"
         android:label="EnterSumFragment"
-        tools:layout="@layout/fragment_withdraw_cash" >
+        tools:layout="@layout/fragment_enter_sum" >
 
         <argument
             android:name="arg"
@@ -158,6 +167,15 @@
             android:id="@+id/action_enterSum_to_enterPIN"
             app:destination="@id/enterPINFragment"
             app:popUpTo="@id/enterSumFragment"
+            app:enterAnim="@anim/slide_from_end_to_center"
+            app:exitAnim="@anim/slide_from_center_to_start"
+            app:popEnterAnim="@anim/slide_from_start_to_center"
+            app:popExitAnim="@anim/slide_from_center_to_end" />
+
+        <action
+            android:id="@+id/action_enterSum_to_performOperation"
+            app:destination="@id/performOperationFragment"
+            app:popUpTo="@id/menuFragment"
             app:enterAnim="@anim/slide_from_end_to_center"
             app:exitAnim="@anim/slide_from_center_to_start"
             app:popEnterAnim="@anim/slide_from_start_to_center"

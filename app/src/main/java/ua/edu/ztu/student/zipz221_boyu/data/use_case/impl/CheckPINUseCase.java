@@ -30,7 +30,7 @@ public class CheckPINUseCase implements WithArgUseCase<CheckPINArg, Completable>
 
         return ComponentProvider.Companion.getInstance()
                 .getRepositories()
-                .getAccount()
+                .account()
                 .invoke(arg.getNumber())
                 .flatMapCompletable(it -> checkPin(it, arg));
     }

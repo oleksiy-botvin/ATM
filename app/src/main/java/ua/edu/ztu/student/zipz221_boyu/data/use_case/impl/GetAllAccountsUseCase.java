@@ -15,7 +15,7 @@ public class GetAllAccountsUseCase implements WithoutArgUseCase<Single<List<Acco
     public Single<List<Account>> invoke() {
         return ComponentProvider.Companion.getInstance()
                 .getRepositories()
-                .getAccounts()
+                .accounts()
                 .invoke();
     }
 }

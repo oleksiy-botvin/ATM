@@ -31,4 +31,5 @@ public interface UseCases {
     WithArgUseCase<Operation.ChangePIN, Single<OperationResult.Success>> changePIN();
     @NonNull
     WithArgUseCase<Operation.ViewBalance, Single<OperationResult.Balance>> getBalance();
+    WithArgUseCase<Operation.Transaction, Single<OperationResult>> transaction();
 }

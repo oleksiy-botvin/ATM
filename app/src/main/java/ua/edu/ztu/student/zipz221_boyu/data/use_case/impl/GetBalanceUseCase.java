@@ -16,7 +16,7 @@ public class GetBalanceUseCase
     public Single<OperationResult.Balance> invoke(@NonNull Operation.ViewBalance arg) {
         return ComponentProvider.Companion.getInstance()
                 .getRepositories()
-                .getAccount()
+                .account()
                 .invoke(arg.getNumber())
                 .map(it -> new OperationResult.Balance(
                         it.getBalance(),

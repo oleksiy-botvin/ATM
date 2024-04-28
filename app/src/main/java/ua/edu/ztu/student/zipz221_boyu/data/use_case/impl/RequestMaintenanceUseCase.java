@@ -36,6 +36,6 @@ public class RequestMaintenanceUseCase implements WithoutArgUseCase<Observable<L
         return Single.fromCallable(() -> {
             getPreferences().setATMBalance(20000);
             return value;
-        }).subscribeOn(getSchedulers().bank());
+        }).subscribeOn(getSchedulers().bank()).observeOn(getSchedulers().io());
     }
 }

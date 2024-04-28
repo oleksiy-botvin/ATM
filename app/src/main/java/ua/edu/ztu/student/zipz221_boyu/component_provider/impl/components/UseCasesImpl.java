@@ -22,6 +22,7 @@ import ua.edu.ztu.student.zipz221_boyu.data.use_case.impl.CheckReadinessForWorkU
 import ua.edu.ztu.student.zipz221_boyu.data.use_case.impl.GetAllAccountsUseCase;
 import ua.edu.ztu.student.zipz221_boyu.data.use_case.impl.GetBalanceUseCase;
 import ua.edu.ztu.student.zipz221_boyu.data.use_case.impl.RequestMaintenanceUseCase;
+import ua.edu.ztu.student.zipz221_boyu.data.use_case.impl.TransactionUseCase;
 
 public class UseCasesImpl implements UseCases {
 
@@ -65,5 +66,10 @@ public class UseCasesImpl implements UseCases {
     @Override
     public WithArgUseCase<Operation.ViewBalance, Single<OperationResult.Balance>> getBalance() {
         return new GetBalanceUseCase();
+    }
+
+    @Override
+    public WithArgUseCase<Operation.Transaction, Single<OperationResult>> transaction() {
+        return new TransactionUseCase();
     }
 }

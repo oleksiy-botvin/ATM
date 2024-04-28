@@ -13,7 +13,7 @@ import ua.edu.ztu.student.zipz221_boyu.data.repository.WithoutArgRepository;
 public interface Repositories {
 
     @NonNull
-    WithoutArgRepository<Single<List<Account>>> getAccounts();
+    WithoutArgRepository<Single<List<Account>>> accounts();
     @NonNull
-    WithArgRepository<CardNumber, Single<Account>> getAccount();
+    WithArgRepository<CardNumber, Single<Account>> account();
 }
