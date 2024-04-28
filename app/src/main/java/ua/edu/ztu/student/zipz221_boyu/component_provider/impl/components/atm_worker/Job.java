@@ -18,9 +18,9 @@ public class Job {
     private Single<? extends OperationResult> invoke(@NonNull Operation operation) {
         if (operation instanceof Operation.ViewBalance) {
             return getUseCases().getBalance().invoke((Operation.ViewBalance) operation);
-        } else if (operation instanceof Operation.WithdrawCash) {
+        } else if (operation instanceof Operation.Transaction.WithdrawCash) {
             return Single.error(new Throwable());
-        } else if (operation instanceof Operation.TopUpAccount) {
+        } else if (operation instanceof Operation.Transaction.TopUpAccount) {
             return Single.error(new Throwable());
         } else if (operation instanceof Operation.ChangePIN) {
             return getUseCases().changePIN().invoke((Operation.ChangePIN) operation);

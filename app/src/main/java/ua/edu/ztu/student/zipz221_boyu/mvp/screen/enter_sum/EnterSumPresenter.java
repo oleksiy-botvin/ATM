@@ -1,4 +1,4 @@
-package ua.edu.ztu.student.zipz221_boyu.mvp.screen.withdraw_cash;
+package ua.edu.ztu.student.zipz221_boyu.mvp.screen.enter_sum;
 
 import androidx.annotation.NonNull;
 
@@ -7,18 +7,18 @@ import ua.edu.ztu.student.zipz221_boyu.data.entity.operation.Operation;
 import ua.edu.ztu.student.zipz221_boyu.mvp.base.BasePresenterImpl;
 import ua.edu.ztu.student.zipz221_boyu.util.PrimitivesUtil;
 
-public class WithdrawCashPresenter
-        extends BasePresenterImpl<WithdrawCashMvp.View>
-        implements WithdrawCashMvp.Presenter {
+public class EnterSumPresenter
+        extends BasePresenterImpl<EnterSumMvp.View>
+        implements EnterSumMvp.Presenter {
 
-    private final Operation.WithdrawCash operation;
+    private final Operation.Transaction operation;
 
-    public WithdrawCashPresenter(@NonNull Operation.WithdrawCash operation) {
+    public EnterSumPresenter(@NonNull Operation.Transaction operation) {
         this.operation = operation;
     }
 
     @Override
-    protected void onViewAttached(@NonNull WithdrawCashMvp.View view) {
+    protected void onViewAttached(@NonNull EnterSumMvp.View view) {
         super.onViewAttached(view);
 
         subscriptions(() -> getATMWorker()

@@ -73,9 +73,9 @@ public class ErrorFragment extends BaseFragment<FragmentErrorBinding> {
             return getString(R.string.message_card_is_blocked);
         } else if (arg.getOperation() instanceof Operation.ViewBalance) {
             message = getString(R.string.error_message_view_balance);
-        } else if (arg.getOperation() instanceof Operation.WithdrawCash) {
+        } else if (arg.getOperation() instanceof Operation.Transaction.WithdrawCash) {
             message = getString(R.string.error_message_withdraw_cash);
-        } else if (arg.getOperation() instanceof Operation.TopUpAccount) {
+        } else if (arg.getOperation() instanceof Operation.Transaction.TopUpAccount) {
             message = getString(R.string.error_message_top_up_account);
         } else if (arg.getOperation() instanceof Operation.ChangePIN) {
             message = getString(R.string.error_message_change_pin);
@@ -91,10 +91,8 @@ public class ErrorFragment extends BaseFragment<FragmentErrorBinding> {
             public void handleOnBackPressed() {
                 if (arg.getThrowable() instanceof CardBlockedException) {
                     completeWork();
-                } else if (arg.getOperation() instanceof Operation.WithdrawCash) {
-
-                } else if (arg.getOperation() instanceof Operation.TopUpAccount) {
-
+                } else if (arg.getOperation() instanceof Operation.Transaction) {
+                    findNavController().popBackStack(R.id.enterSumFragment, false);
                 } else if (arg.getOperation() instanceof Operation.ChangePIN) {
                     setEnabled(false);
                     requireActivity().getOnBackPressedDispatcher().onBackPressed();

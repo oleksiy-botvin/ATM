@@ -53,8 +53,8 @@ public class MenuFragment
             );
 
             vb.viewBalanceButton.setOnClickListener(v -> navigate(new Operation.ViewBalance(number)));
-            vb.withdrawCashButton.setOnClickListener(v -> navigate(new Operation.WithdrawCash(number)));
-            vb.topUpAccountButton.setOnClickListener(v -> navigate(new Operation.TopUpAccount(number)));
+            vb.withdrawCashButton.setOnClickListener(v -> navigate(new Operation.Transaction.WithdrawCash(number)));
+            vb.topUpAccountButton.setOnClickListener(v -> navigate(new Operation.Transaction.TopUpAccount(number)));
             vb.changePinButton.setOnClickListener(v -> navigate(new Operation.ChangePIN(number)));
         });
     }
@@ -90,9 +90,8 @@ public class MenuFragment
         NavDirections direction;
         if (operation instanceof Operation.ChangePIN) direction = MenuFragmentDirections
                 .actionMenuToEnterPIN(operation);
-        else if (operation instanceof Operation.WithdrawCash) direction = MenuFragmentDirections
-                .actionMenuToWithdrawCash((Operation.WithdrawCash) operation);
-        else if (operation instanceof Operation.TopUpAccount) return;
+        else if (operation instanceof Operation.Transaction) direction = MenuFragmentDirections
+                .actionMenuToEnterSum((Operation.Transaction) operation);
         else if (operation instanceof Operation.ViewBalance) direction = MenuFragmentDirections
                 .actionMenuToEnterPIN(operation);
         else return;

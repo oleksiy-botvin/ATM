@@ -41,8 +41,8 @@
             app:popExitAnim="@anim/slide_from_center_to_end" />
 
         <action
-            android:id="@+id/action_menu_to_withdrawCash"
-            app:destination="@id/withdrawCashFragment"
+            android:id="@+id/action_menu_to_enterSum"
+            app:destination="@id/enterSumFragment"
             app:popUpTo="@id/menuFragment"
             app:enterAnim="@anim/slide_from_end_to_center"
             app:exitAnim="@anim/slide_from_center_to_start"
@@ -144,20 +144,20 @@
     </fragment>
 
     <fragment
-        android:id="@+id/withdrawCashFragment"
-        android:name="ua.edu.ztu.student.zipz221_boyu.ui.fragment.WithdrawCashFragment"
-        android:label="WithdrawCashFragment"
+        android:id="@+id/enterSumFragment"
+        android:name="ua.edu.ztu.student.zipz221_boyu.ui.fragment.EnterSumFragment"
+        android:label="EnterSumFragment"
         tools:layout="@layout/fragment_withdraw_cash" >
 
         <argument
             android:name="arg"
-            app:argType="ua.edu.ztu.student.zipz221_boyu.data.entity.operation.Operation$WithdrawCash"
+            app:argType="ua.edu.ztu.student.zipz221_boyu.data.entity.operation.Operation$Transaction"
             app:nullable="false" />
 
         <action
-            android:id="@+id/action_withdrawCash_to_enterPIN"
+            android:id="@+id/action_enterSum_to_enterPIN"
             app:destination="@id/enterPINFragment"
-            app:popUpTo="@id/withdrawCashFragment"
+            app:popUpTo="@id/enterSumFragment"
             app:enterAnim="@anim/slide_from_end_to_center"
             app:exitAnim="@anim/slide_from_center_to_start"
             app:popEnterAnim="@anim/slide_from_start_to_center"

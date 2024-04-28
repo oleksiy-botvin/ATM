@@ -28,13 +28,14 @@ public abstract class Operation implements Serializable {
         }
     }
 
-    public static class WithdrawCash extends Operation {
+    public static class Transaction extends Operation {
 
         @IntRange(from = 0) public int sum = 0;
 
-        public WithdrawCash(@NonNull CardNumber number) {
+        protected Transaction(@NonNull CardNumber number) {
             super(number);
         }
+
 
         public int getSum() {
             return sum;
@@ -43,13 +44,21 @@ public abstract class Operation implements Serializable {
         public void setSum(@IntRange(from = 0) int sum) {
             this.sum = sum;
         }
-    }
 
-    public static class TopUpAccount extends Operation {
+        public static class WithdrawCash extends Transaction {
 
-        public TopUpAccount(@NonNull CardNumber number) {
-            super(number);
+            public WithdrawCash(@NonNull CardNumber number) {
+                super(number);
+            }
         }
+
+        public static class TopUpAccount extends Transaction {
+
+            public TopUpAccount(@NonNull CardNumber number) {
+                super(number);
+            }
+        }
+
     }
 
     public static class ChangePIN extends Operation {
