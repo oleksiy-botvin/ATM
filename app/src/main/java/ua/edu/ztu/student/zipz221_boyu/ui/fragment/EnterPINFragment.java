@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import ua.edu.ztu.student.zipz221_boyu.R;
 import ua.edu.ztu.student.zipz221_boyu.data.entity.operation.Operation;
+import ua.edu.ztu.student.zipz221_boyu.data.entity.operation.OperationError;
 import ua.edu.ztu.student.zipz221_boyu.databinding.FragmentEnterPinBinding;
 import ua.edu.ztu.student.zipz221_boyu.mvp.screen.enter_pin.EnterPINMvp;
 import ua.edu.ztu.student.zipz221_boyu.mvp.screen.enter_pin.EnterPINPresenter;
@@ -35,19 +36,13 @@ public class EnterPINFragment
     }
 
     @Override
-    public void showOperationError(@NonNull Operation.Error error) {
+    public void showOperationError(@NonNull OperationError error) {
         navigate(EnterPINFragmentDirections.actionEnterPINToError(error));
     }
 
     @Override
     public void initListeners() {
         withBinding(vb -> {
-            ViewCompat.setOnApplyWindowInsetsListener(vb.getRoot(), (v, insets) -> {
-                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-                return insets;
-            });
-
             vb.backButton.setOnClickListener(v -> requireActivity()
                     .getOnBackPressedDispatcher()
                     .onBackPressed()
@@ -89,6 +84,7 @@ public class EnterPINFragment
         withBinding(vb -> {
             vb.textInputLayout.setEnabled(!isLocked);
             vb.backButton.setEnabled(!isLocked);
+            vb.continueButton.setEnabled(!isLocked);
             vb.progressIndicator.setVisibility(isLocked ? View.VISIBLE : View.INVISIBLE);
         });
     }
@@ -115,6 +111,6 @@ public class EnterPINFragment
 
     @Override
     public void showNextScreen(@NonNull Operation operation) {
-
+        navigate(EnterPINFragmentDirections.actionEnterPINToPerformOperation(operation));
     }
 }

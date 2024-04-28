@@ -2,14 +2,18 @@
     <string name="app_name">ATM</string>
 
     <string name="inset_card">Вставити карту</string>
-    <string name="hint_not_ready_to_work">Вибачте, банкомат тимчасово не працює.\n\nМи працюємо над вирішенням проблеми</string>
-    <string name="hint_run_out_of_money">У банкоматі закінчилися гроші\n\nБудь ласка, зачекайте на завершення технічного обслуговування</string>
+    <string name="not_ready_to_work">Вибачте, банкомат тимчасово не працює.</string>
+    <string name="hint_not_ready_to_work">Ми працюємо над вирішенням проблеми</string>
+    <string name="ran_out_of_money">У банкоматі закінчилися гроші</string>
+    <string name="runs_out_of_money">У банкоматі закінчуються гроші</string>
+    <string name="hint_wait_for_maintenance_complete">Деякі функції банкомата недоступні. Для повноціного користування, будь ласка, зачекайте на завершення технічного обслуговування</string>
     <string name="account_number_with_colon">Рахунку №:</string>
     <string name="debit">Debit</string>
     <string name="credit">Credit</string>
     <string name="pin_with_colon">PIN: %s</string>
     <string name="amount_in_uah">%.2f грн</string>
-    <string name="card_has_expired">Термін дії картки закінчився.\n\nЗверніться до відділення банку</string>
+    <string name="card_has_expired">Термін дії картки закінчився.</string>
+    <string name="hin_contact_bank_branch">Зверніться до відділення банку</string>
     <string name="view_balance">Переглянути баланс</string>
     <string name="withdraw_cash">Зняти готівку</string>
     <string name="money_transfer">Переказ коштів</string>

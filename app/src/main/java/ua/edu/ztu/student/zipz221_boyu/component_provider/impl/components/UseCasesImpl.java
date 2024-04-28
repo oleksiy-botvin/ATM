@@ -1,4 +1,4 @@
-package ua.edu.ztu.student.zipz221_boyu.component_provider.impl;
+package ua.edu.ztu.student.zipz221_boyu.component_provider.impl.components;
 
 import androidx.annotation.NonNull;
 
@@ -12,6 +12,7 @@ import ua.edu.ztu.student.zipz221_boyu.data.entity.Account;
 import ua.edu.ztu.student.zipz221_boyu.data.entity.arg.CheckPINArg;
 import ua.edu.ztu.student.zipz221_boyu.data.entity.card.Card;
 import ua.edu.ztu.student.zipz221_boyu.data.entity.operation.Operation;
+import ua.edu.ztu.student.zipz221_boyu.data.entity.operation.OperationResult;
 import ua.edu.ztu.student.zipz221_boyu.data.use_case.WithArgUseCase;
 import ua.edu.ztu.student.zipz221_boyu.data.use_case.WithoutArgUseCase;
 import ua.edu.ztu.student.zipz221_boyu.data.use_case.impl.ChangePINUseCase;
@@ -31,7 +32,7 @@ public class UseCasesImpl implements UseCases {
 
     @NonNull
     @Override
-    public WithoutArgUseCase<Completable> checkReadinessForWork() {
+    public WithoutArgUseCase<Single<Integer>> checkReadinessForWork() {
         return new CheckReadinessForWorkUseCase();
     }
 
@@ -55,7 +56,7 @@ public class UseCasesImpl implements UseCases {
 
     @NonNull
     @Override
-    public WithArgUseCase<Operation.ChangePIN, Completable> changePIN() {
+    public WithArgUseCase<Operation.ChangePIN, Single<OperationResult.Success>> changePIN() {
         return new ChangePINUseCase();
     }
 }

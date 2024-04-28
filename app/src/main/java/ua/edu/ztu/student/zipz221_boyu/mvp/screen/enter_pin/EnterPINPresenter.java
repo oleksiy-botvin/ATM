@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 
 import ua.edu.ztu.student.zipz221_boyu.data.entity.arg.CheckPINArg;
 import ua.edu.ztu.student.zipz221_boyu.data.entity.operation.Operation;
+import ua.edu.ztu.student.zipz221_boyu.data.entity.operation.OperationError;
 import ua.edu.ztu.student.zipz221_boyu.data.exceptions.pin.InvalidPinCodeException;
 import ua.edu.ztu.student.zipz221_boyu.mvp.base.BasePresenterImpl;
 
@@ -35,9 +36,8 @@ public class EnterPINPresenter extends BasePresenterImpl<EnterPINMvp.View> imple
     }
 
     private void checkPIN(@NonNull String pin) {
-        subscriptions(() -> getUseCases()
-                .checkPIN()
-                .invoke(new CheckPINArg(operation.getNumber(), pin))
+        subscriptions(() ->getATMWorker()
+                .checkPIN(new CheckPINArg(operation.getNumber(), pin))
                 .observeOn(getSchedulers().ui())
                 .subscribe(this::onPINHasBeenVerified, this::onPINHasNotBeenVerified)
         );
@@ -78,6 +78,6 @@ public class EnterPINPresenter extends BasePresenterImpl<EnterPINMvp.View> imple
     }
 
     private void showOperationError(Throwable t) {
-        withView(view -> view.showOperationError(new Operation.Error(operation, t)));
+        withView(view -> view.showOperationError(new OperationError(operation, t)));
     }
 }

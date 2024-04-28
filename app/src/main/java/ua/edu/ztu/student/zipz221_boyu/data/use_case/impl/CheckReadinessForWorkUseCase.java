@@ -7,10 +7,11 @@ import io.reactivex.Single;
 import ua.edu.ztu.student.zipz221_boyu.component_provider.ComponentProvider;
 import ua.edu.ztu.student.zipz221_boyu.component_provider.components.AppSchedulers;
 import ua.edu.ztu.student.zipz221_boyu.component_provider.components.Preferences;
-import ua.edu.ztu.student.zipz221_boyu.data.exceptions.RanOutOfMoneyException;
+import ua.edu.ztu.student.zipz221_boyu.data.exceptions.MoneyRanOutException;
+import ua.edu.ztu.student.zipz221_boyu.data.exceptions.MoneyRunsOutException;
 import ua.edu.ztu.student.zipz221_boyu.data.use_case.WithoutArgUseCase;
 
-public class CheckReadinessForWorkUseCase implements WithoutArgUseCase<Completable> {
+public class CheckReadinessForWorkUseCase implements WithoutArgUseCase<Single<Integer>> {
 
     @NonNull
     private AppSchedulers getSchedulers() {
@@ -24,16 +25,16 @@ public class CheckReadinessForWorkUseCase implements WithoutArgUseCase<Completab
 
     @NonNull
     @Override
-    public Completable invoke() {
+    public Single<Integer> invoke() {
         return Single.fromCallable(() -> getPreferences().getATMBalance())
                 .map(this::checkBalance)
                 .subscribeOn(getSchedulers().bank())
-                .observeOn(getSchedulers().io())
-                .ignoreElement();
+                .observeOn(getSchedulers().io());
     }
 
-    private int checkBalance(int balance) throws RanOutOfMoneyException {
-        if (balance < 1) throw new RanOutOfMoneyException();
-        return balance;
+    private int checkBalance(int balance) throws MoneyRunsOutException {
+        if (balance < 1) throw new MoneyRanOutException();
+        else if (balance < 200) throw new MoneyRunsOutException(balance);
+        else return balance;
     }
 }

@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import ua.edu.ztu.student.zipz221_boyu.component_provider.ComponentProvider;
+import ua.edu.ztu.student.zipz221_boyu.component_provider.components.ATMWorker;
 import ua.edu.ztu.student.zipz221_boyu.component_provider.components.AppSchedulers;
 import ua.edu.ztu.student.zipz221_boyu.component_provider.components.Preferences;
 import ua.edu.ztu.student.zipz221_boyu.component_provider.components.Repositories;
@@ -66,6 +67,11 @@ public abstract class BasePresenterImpl<V extends BaseMvp.BaseView> implements B
     @NonNull
     protected final UseCases getUseCases() {
         return getComponentProvider().getUseCases();
+    }
+
+    @NonNull
+    protected final ATMWorker getATMWorker() {
+        return getComponentProvider().getATMWorker();
     }
 
     protected final void subscriptions(@NonNull Supplier<Disposable> add) {

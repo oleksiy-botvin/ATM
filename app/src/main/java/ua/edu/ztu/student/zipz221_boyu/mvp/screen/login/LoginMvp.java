@@ -14,7 +14,7 @@ public interface LoginMvp {
         void initListeners();
         void setLocked(boolean isLocked);
         void showHintNotReadyToWork();
-        void showHintRunOutOfMoney();
+        void showHintRunsOutOfMoney(boolean isOver);
         void showHowMuchTimeIsLeft(long it);
         void hideMessage();
         void showSelectCardDialog(@NonNull List<Account> items);

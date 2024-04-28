@@ -1,4 +1,4 @@
-package ua.edu.ztu.student.zipz221_boyu.component_provider.impl.scheduler;
+package ua.edu.ztu.student.zipz221_boyu.component_provider.impl.components.scheduler;
 
 import androidx.annotation.NonNull;
 

@@ -1,4 +1,4 @@
-package ua.edu.ztu.student.zipz221_boyu.component_provider.impl;
+package ua.edu.ztu.student.zipz221_boyu.component_provider.impl.components;
 
 import androidx.annotation.NonNull;
 

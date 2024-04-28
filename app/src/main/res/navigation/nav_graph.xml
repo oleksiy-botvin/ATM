@@ -79,7 +79,7 @@
 
         <argument
             android:name="arg"
-            app:argType="ua.edu.ztu.student.zipz221_boyu.data.entity.operation.Operation$Error" />
+            app:argType="ua.edu.ztu.student.zipz221_boyu.data.entity.operation.OperationError" />
 
         <action
             android:id="@+id/action_error_to_menu"

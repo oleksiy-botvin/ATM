@@ -14,17 +14,11 @@ public abstract class Operation implements Serializable {
         this.number = number;
     }
 
-
     public @NonNull CardNumber getNumber() {
         return number;
     }
 
-    public static class Unknown extends Operation {
 
-        public Unknown() {
-            super(new CardNumber(0, "00000", "0000000000"));
-        }
-    }
 
     public static class ViewBalance extends Operation {
 
@@ -65,24 +59,10 @@ public abstract class Operation implements Serializable {
         }
     }
 
-    public static class Error implements Serializable {
+    public static class Unknown extends Operation {
 
-        @NonNull private final Operation operation;
-        @NonNull private final Throwable throwable;
-
-        public Error(@NonNull Operation operation, @NonNull Throwable throwable) {
-            this.operation = operation;
-            this.throwable = throwable;
-        }
-
-        @NonNull
-        public Operation getOperation() {
-            return operation;
-        }
-
-        @NonNull
-        public Throwable getThrowable() {
-            return throwable;
+        public Unknown() {
+            super(new CardNumber(0, "00000", "0000000000"));
         }
     }
 }

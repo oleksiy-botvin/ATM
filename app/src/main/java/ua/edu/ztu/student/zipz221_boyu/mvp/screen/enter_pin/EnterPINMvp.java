@@ -4,12 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import ua.edu.ztu.student.zipz221_boyu.data.entity.operation.Operation;
+import ua.edu.ztu.student.zipz221_boyu.data.entity.operation.OperationError;
 import ua.edu.ztu.student.zipz221_boyu.mvp.base.BaseMvp;
 
 public interface EnterPINMvp {
 
     interface View extends BaseMvp.BaseView {
-        void showOperationError(@NonNull Operation.Error error);
+        void showOperationError(@NonNull OperationError error);
         void initListeners();
         void setLocked(boolean isLocked);
         void showEnterNewPIN();

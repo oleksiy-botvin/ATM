@@ -9,9 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.navigation.fragment.NavHostFragment;
 
-import java.io.Serializable;
 import java.util.List;
 
 import ua.edu.ztu.student.zipz221_boyu.R;
@@ -43,17 +41,6 @@ public class LoginFragment
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        withBinding(it -> ViewCompat.setOnApplyWindowInsetsListener(it.getRoot(), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        }));
-    }
-
-    @Override
     public void initListeners() {
         withBinding(vb -> vb
                 .insertCardButton
@@ -72,6 +59,8 @@ public class LoginFragment
     @Override
     public void showHintNotReadyToWork() {
         withBinding(vb -> {
+            vb.titleTextView.setVisibility(View.VISIBLE);
+            vb.titleTextView.setText(R.string.not_ready_to_work);
             vb.messageTextView.setVisibility(View.VISIBLE);
             vb.messageTextView.setText(R.string.hint_not_ready_to_work);
             vb.insertCardButton.setEnabled(false);
@@ -80,10 +69,14 @@ public class LoginFragment
     }
 
     @Override
-    public void showHintRunOutOfMoney() {
+    public void showHintRunsOutOfMoney(boolean isOver) {
         withBinding(vb -> {
+            vb.titleTextView.setVisibility(View.VISIBLE);
+            vb.titleTextView.setText(
+                    isOver ? R.string.ran_out_of_money : R.string.runs_out_of_money
+            );
             vb.messageTextView.setVisibility(View.VISIBLE);
-            vb.messageTextView.setText(R.string.hint_run_out_of_money);
+            vb.messageTextView.setText(R.string.hint_wait_for_maintenance_complete);
         });
     }
 
@@ -100,6 +93,7 @@ public class LoginFragment
         withBinding(vb -> {
             vb.timeIsLeftTextView.setVisibility(View.GONE);
             vb.messageTextView.setVisibility(View.GONE);
+            vb.titleTextView.setVisibility(View.GONE);
         });
     }
 
@@ -122,8 +116,10 @@ public class LoginFragment
     @Override
     public void showHintCardHasExpired() {
         withBinding(vb -> {
+            vb.titleTextView.setVisibility(View.VISIBLE);
+            vb.titleTextView.setText(R.string.card_has_expired);
             vb.messageTextView.setVisibility(View.VISIBLE);
-            vb.messageTextView.setText(R.string.card_has_expired);
+            vb.messageTextView.setText(R.string.hin_contact_bank_branch);
             vb.insertCardButton.setEnabled(true);
             vb.progressIndicator.setVisibility(View.INVISIBLE);
         });

@@ -11,6 +11,7 @@ import ua.edu.ztu.student.zipz221_boyu.data.entity.Account;
 import ua.edu.ztu.student.zipz221_boyu.data.entity.arg.CheckPINArg;
 import ua.edu.ztu.student.zipz221_boyu.data.entity.card.Card;
 import ua.edu.ztu.student.zipz221_boyu.data.entity.operation.Operation;
+import ua.edu.ztu.student.zipz221_boyu.data.entity.operation.OperationResult;
 import ua.edu.ztu.student.zipz221_boyu.data.use_case.WithArgUseCase;
 import ua.edu.ztu.student.zipz221_boyu.data.use_case.WithoutArgUseCase;
 
@@ -19,7 +20,7 @@ public interface UseCases {
     @NonNull
     WithoutArgUseCase<Single<List<Account>>> getAllAccounts();
     @NonNull
-    WithoutArgUseCase<Completable> checkReadinessForWork();
+    WithoutArgUseCase<Single<Integer>> checkReadinessForWork();
     @NonNull
     WithoutArgUseCase<Observable<Long>> requestMaintenance();
     @NonNull
@@ -27,5 +28,5 @@ public interface UseCases {
     @NonNull
     WithArgUseCase<CheckPINArg, Completable> checkPIN();
     @NonNull
-    WithArgUseCase<Operation.ChangePIN, Completable> changePIN();
+    WithArgUseCase<Operation.ChangePIN, Single<OperationResult.Success>> changePIN();
 }
