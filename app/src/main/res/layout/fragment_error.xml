@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:icon="@drawable/outline_arrow_back_24"
+        app:icon="@drawable/rounded_arrow_back_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/back_button"
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@drawable/twotone_error_24"
+        app:srcCompat="@drawable/rounded_error_24"
         app:tint="?attr/colorError"
         tools:ignore="ContentDescription" />
 
