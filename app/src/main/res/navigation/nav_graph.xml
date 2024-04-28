@@ -32,8 +32,17 @@
             app:nullable="false"/>
 
         <action
-            android:id="@+id/action_menu_to_enter_pin"
+            android:id="@+id/action_menu_to_enterPIN"
             app:destination="@id/enterPINFragment"
+            app:popUpTo="@id/menuFragment"
+            app:enterAnim="@anim/slide_from_end_to_center"
+            app:exitAnim="@anim/slide_from_center_to_start"
+            app:popEnterAnim="@anim/slide_from_start_to_center"
+            app:popExitAnim="@anim/slide_from_center_to_end" />
+
+        <action
+            android:id="@+id/action_menu_to_withdrawCash"
+            app:destination="@id/withdrawCashFragment"
             app:popUpTo="@id/menuFragment"
             app:enterAnim="@anim/slide_from_end_to_center"
             app:exitAnim="@anim/slide_from_center_to_start"
@@ -132,5 +141,27 @@
             app:exitAnim="@anim/slide_from_center_to_start"
             app:popEnterAnim="@anim/slide_from_start_to_center"
             app:popExitAnim="@anim/slide_from_center_to_end" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/withdrawCashFragment"
+        android:name="ua.edu.ztu.student.zipz221_boyu.ui.fragment.WithdrawCashFragment"
+        android:label="WithdrawCashFragment"
+        tools:layout="@layout/fragment_withdraw_cash" >
+
+        <argument
+            android:name="arg"
+            app:argType="ua.edu.ztu.student.zipz221_boyu.data.entity.operation.Operation$WithdrawCash"
+            app:nullable="false" />
+
+        <action
+            android:id="@+id/action_withdrawCash_to_enterPIN"
+            app:destination="@id/enterPINFragment"
+            app:popUpTo="@id/withdrawCashFragment"
+            app:enterAnim="@anim/slide_from_end_to_center"
+            app:exitAnim="@anim/slide_from_center_to_start"
+            app:popEnterAnim="@anim/slide_from_start_to_center"
+            app:popExitAnim="@anim/slide_from_center_to_end" />
+
     </fragment>
 </navigation>

@@ -89,11 +89,12 @@ public class MenuFragment
     private void navigate(@NonNull Operation operation) {
         NavDirections direction;
         if (operation instanceof Operation.ChangePIN) direction = MenuFragmentDirections
-                .actionMenuToEnterPin(operation);
-        else if (operation instanceof Operation.WithdrawCash) return;
+                .actionMenuToEnterPIN(operation);
+        else if (operation instanceof Operation.WithdrawCash) direction = MenuFragmentDirections
+                .actionMenuToWithdrawCash((Operation.WithdrawCash) operation);
         else if (operation instanceof Operation.TopUpAccount) return;
         else if (operation instanceof Operation.ViewBalance) direction = MenuFragmentDirections
-                .actionMenuToEnterPin(operation);
+                .actionMenuToEnterPIN(operation);
         else return;
 
         navigate(direction);

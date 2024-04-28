@@ -2,6 +2,7 @@ package ua.edu.ztu.student.zipz221_boyu.mvp.screen.balance;
 
 import androidx.annotation.NonNull;
 
+import ua.edu.ztu.student.zipz221_boyu.data.entity.atm_state.ATMState;
 import ua.edu.ztu.student.zipz221_boyu.data.entity.operation.Operation;
 import ua.edu.ztu.student.zipz221_boyu.data.entity.operation.OperationError;
 import ua.edu.ztu.student.zipz221_boyu.data.entity.operation.OperationResult;
@@ -21,6 +22,17 @@ public class BalancePresenter
     protected void onViewAttached(@NonNull BalanceMvp.View view) {
         super.onViewAttached(view);
         view.setLocked(true);
+
+        subscriptions(() -> getATMWorker()
+                .observeState()
+                .observeOn(getSchedulers().ui())
+                .subscribe(
+                        it -> { if (it instanceof ATMState.NotReady) view.showLoginScreen(); },
+                        it -> {},
+                        () -> {}
+                )
+        );
+
         view.initListeners();
 
         subscriptions(() -> getATMWorker()

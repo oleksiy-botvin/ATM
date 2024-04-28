@@ -1,5 +1,6 @@
 package ua.edu.ztu.student.zipz221_boyu.data.entity.operation;
 
+import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 
 import java.io.Serializable;
@@ -29,8 +30,18 @@ public abstract class Operation implements Serializable {
 
     public static class WithdrawCash extends Operation {
 
+        @IntRange(from = 0) public int sum = 0;
+
         public WithdrawCash(@NonNull CardNumber number) {
             super(number);
+        }
+
+        public int getSum() {
+            return sum;
+        }
+
+        public void setSum(@IntRange(from = 0) int sum) {
+            this.sum = sum;
         }
     }
 

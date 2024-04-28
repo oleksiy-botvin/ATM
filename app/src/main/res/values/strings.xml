@@ -42,4 +42,5 @@
     <string name="own_funds">Власні кошти</string>
     <string name="available">Доступно</string>
     <string name="credit_limit">Кредитний ліміт</string>
+    <string name="enter_amount">Введіть суму та натисніть \"Продовжити\"</string>
 </resources>

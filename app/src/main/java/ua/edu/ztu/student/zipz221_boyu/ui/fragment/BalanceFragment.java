@@ -81,4 +81,12 @@ public class BalanceFragment
     public void showErrorScreen(OperationError error) {
         navigate(BalanceFragmentDirections.actionBalanceToError(error));
     }
+
+    @Override
+    public void showLoginScreen() {
+        findNavController(it -> it.popBackStack(
+                it.getGraph().getStartDestinationId(),
+                false
+        ));
+    }
 }

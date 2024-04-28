@@ -14,6 +14,7 @@ public interface BalanceMvp {
         void initListeners();
         void showBalance(@NonNull OperationResult.Balance it);
         void showErrorScreen(OperationError error);
+        void showLoginScreen();
     }
 
     interface Presenter extends BaseMvp.BasePresenter<View> {
