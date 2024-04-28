@@ -56,9 +56,9 @@ public class ErrorFragment extends BaseFragment<FragmentErrorBinding> {
                     .getOnBackPressedDispatcher()
                     .onBackPressed()
             );
-            vb.goToMenuButton.setOnClickListener(v -> navigate(
-                    ErrorFragmentDirections.actionErrorToMenu(arg.getOperation().getNumber())
-            ));
+            vb.goToMenuButton.setOnClickListener(v -> findNavController()
+                    .popBackStack(R.id.menuFragment, false)
+            );
             vb.completeWorkButton.setOnClickListener(v -> completeWork());
 
             requireActivity()
@@ -99,14 +99,16 @@ public class ErrorFragment extends BaseFragment<FragmentErrorBinding> {
                     setEnabled(false);
                     requireActivity().getOnBackPressedDispatcher().onBackPressed();
                 } else {
-                    navigate(ErrorFragmentDirections.actionErrorToMenu(arg.getOperation().getNumber()));
+                    findNavController().popBackStack(R.id.menuFragment, false);
                 }
             }
         };
     }
 
     private void completeWork() {
-        NavController controller = NavHostFragment.findNavController(this);
-        controller.popBackStack(controller.getGraph().getStartDestinationId(), false);
+        findNavController(it -> it.popBackStack(
+                it.getGraph().getStartDestinationId(),
+                false
+        ));
     }
 }

@@ -29,4 +29,6 @@ public interface UseCases {
     WithArgUseCase<CheckPINArg, Completable> checkPIN();
     @NonNull
     WithArgUseCase<Operation.ChangePIN, Single<OperationResult.Success>> changePIN();
+    @NonNull
+    WithArgUseCase<Operation.ViewBalance, Single<OperationResult.Balance>> getBalance();
 }

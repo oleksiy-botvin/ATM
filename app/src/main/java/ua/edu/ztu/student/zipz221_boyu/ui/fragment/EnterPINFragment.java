@@ -111,6 +111,9 @@ public class EnterPINFragment
 
     @Override
     public void showNextScreen(@NonNull Operation operation) {
-        navigate(EnterPINFragmentDirections.actionEnterPINToPerformOperation(operation));
+        navigate(operation instanceof Operation.ViewBalance
+                ? EnterPINFragmentDirections.actionEnterPINToBalance((Operation.ViewBalance) operation)
+                : EnterPINFragmentDirections.actionEnterPINToPerformOperation(operation)
+        );
     }
 }

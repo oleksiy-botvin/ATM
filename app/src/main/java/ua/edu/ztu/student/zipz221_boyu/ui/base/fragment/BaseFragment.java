@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.NavDirections;
 import androidx.navigation.fragment.NavHostFragment;
@@ -34,6 +35,14 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
 
     protected void withBinding(@NonNull NotNullConsumer<VB> action) {
         if (binding != null) action.accept(binding);
+    }
+
+    protected NavController findNavController() {
+        return NavHostFragment.findNavController(this);
+    }
+
+    protected void findNavController(@NonNull NotNullConsumer<NavController> consumer) {
+        consumer.accept(findNavController());
     }
 
     protected void navigate(@NonNull NavDirections directions) {

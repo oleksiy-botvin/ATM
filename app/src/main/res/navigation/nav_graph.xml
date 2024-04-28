@@ -69,6 +69,15 @@
             app:exitAnim="@anim/slide_from_center_to_start"
             app:popEnterAnim="@anim/slide_from_start_to_center"
             app:popExitAnim="@anim/slide_from_center_to_end" />
+
+        <action
+            android:id="@+id/action_enterPIN_to_balance"
+            app:destination="@id/balanceFragment"
+            app:popUpTo="@id/menuFragment"
+            app:enterAnim="@anim/slide_from_end_to_center"
+            app:exitAnim="@anim/slide_from_center_to_start"
+            app:popEnterAnim="@anim/slide_from_start_to_center"
+            app:popExitAnim="@anim/slide_from_center_to_end" />
     </fragment>
 
     <fragment
@@ -81,14 +90,6 @@
             android:name="arg"
             app:argType="ua.edu.ztu.student.zipz221_boyu.data.entity.operation.OperationError" />
 
-        <action
-            android:id="@+id/action_error_to_menu"
-            app:destination="@id/menuFragment"
-            app:popUpTo="@id/loginFragment"
-            app:enterAnim="@anim/slide_from_end_to_center"
-            app:exitAnim="@anim/slide_from_center_to_start"
-            app:popEnterAnim="@anim/slide_from_start_to_center"
-            app:popExitAnim="@anim/slide_from_center_to_end" />
     </fragment>
 
     <fragment
@@ -103,16 +104,28 @@
             app:nullable="false" />
 
         <action
-            android:id="@+id/action_performOperation_to_menu"
-            app:destination="@id/menuFragment"
-            app:popUpTo="@id/loginFragment"
+            android:id="@+id/action_performOperation_to_error"
+            app:destination="@id/errorFragment"
+            app:popUpTo="@id/menuFragment"
             app:enterAnim="@anim/slide_from_end_to_center"
             app:exitAnim="@anim/slide_from_center_to_start"
             app:popEnterAnim="@anim/slide_from_start_to_center"
             app:popExitAnim="@anim/slide_from_center_to_end" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/balanceFragment"
+        android:name="ua.edu.ztu.student.zipz221_boyu.ui.fragment.BalanceFragment"
+        android:label="BalanceFragment"
+        tools:layout="@layout/fragment_perform_operation" >
+
+        <argument
+            android:name="arg"
+            app:argType="ua.edu.ztu.student.zipz221_boyu.data.entity.operation.Operation$ViewBalance"
+            app:nullable="false" />
 
         <action
-            android:id="@+id/action_performOperation_to_error"
+            android:id="@+id/action_balance_to_error"
             app:destination="@id/errorFragment"
             app:popUpTo="@id/menuFragment"
             app:enterAnim="@anim/slide_from_end_to_center"

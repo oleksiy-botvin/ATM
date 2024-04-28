@@ -37,4 +37,9 @@
     <string name="error_message_change_pin">Не вдалося змінити ПІН-код.</string>
     <string name="error_message_an_unexpected_error_occurred">Сталася неочікувана помилка.</string>
     <string name="try_again_or_contact_bank">Будь ласка спробуйте ще раз. Якщо помилка не зникає, зверніться до найближчого відділення банку</string>
+    <string name="title_view_balance">Будь ласка спробуйте ще раз. Якщо помилка не зникає, зверніться до найближчого відділення банку</string>
+    <string name="including_credit_facilities">З урахуванням кредитних коштів</string>
+    <string name="own_funds">Власні кошти</string>
+    <string name="available">Доступно</string>
+    <string name="credit_limit">Кредитний ліміт</string>
 </resources>

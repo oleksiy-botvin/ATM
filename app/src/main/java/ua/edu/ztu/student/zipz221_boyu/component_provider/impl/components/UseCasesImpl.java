@@ -20,6 +20,7 @@ import ua.edu.ztu.student.zipz221_boyu.data.use_case.impl.CheckCardUseCase;
 import ua.edu.ztu.student.zipz221_boyu.data.use_case.impl.CheckPINUseCase;
 import ua.edu.ztu.student.zipz221_boyu.data.use_case.impl.CheckReadinessForWorkUseCase;
 import ua.edu.ztu.student.zipz221_boyu.data.use_case.impl.GetAllAccountsUseCase;
+import ua.edu.ztu.student.zipz221_boyu.data.use_case.impl.GetBalanceUseCase;
 import ua.edu.ztu.student.zipz221_boyu.data.use_case.impl.RequestMaintenanceUseCase;
 
 public class UseCasesImpl implements UseCases {
@@ -58,5 +59,11 @@ public class UseCasesImpl implements UseCases {
     @Override
     public WithArgUseCase<Operation.ChangePIN, Single<OperationResult.Success>> changePIN() {
         return new ChangePINUseCase();
+    }
+
+    @NonNull
+    @Override
+    public WithArgUseCase<Operation.ViewBalance, Single<OperationResult.Balance>> getBalance() {
+        return new GetBalanceUseCase();
     }
 }

@@ -15,7 +15,6 @@ public class LoginPresenter extends BasePresenterImpl<LoginMvp.View> implements 
     @Override
     protected void onViewAttached(@NonNull LoginMvp.View view) {
         super.onViewAttached(view);
-        getPreferences().setATMBalance(0);
         view.setLocked(true);
         view.initListeners();
         subscriptions(() -> getATMWorker()

@@ -22,7 +22,6 @@ public class CheckPINUseCase implements WithArgUseCase<CheckPINArg, Completable>
         return ComponentProvider.Companion.getInstance().getPreferences();
     }
 
-
     @NonNull
     @Override
     public Completable invoke(@NonNull CheckPINArg arg) {
