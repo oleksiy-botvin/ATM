@@ -13,9 +13,36 @@ import ua.edu.ztu.student.zipz221_boyu.data.exceptions.InsufficientFundsExceptio
 import ua.edu.ztu.student.zipz221_boyu.data.exceptions.MoneyRanOutException;
 import ua.edu.ztu.student.zipz221_boyu.data.use_case.WithArgUseCase;
 
+/**
+ * Варіант використання для проведення банківських транзакцій.
+ *
+ * Підтримує два типи транзакцій:
+ * - Зняття готівки ({@link Operation.Transaction.WithdrawCash})
+ * - Поповнення рахунку ({@link Operation.Transaction.TopUpAccount})
+ *
+ * При знятті готівки виконуються перевірки:
+ * - Достатність коштів на рахунку (включаючи кредитний ліміт)
+ * - Наявність достатньої суми в банкоматі
+ * - Оновлення балансу рахунку та кредитного ліміту
+ * - Оновлення залишку готівки в банкоматі
+ *
+ * При поповненні рахунку:
+ * - Спочатку погашається кредитна заборгованість
+ * - Залишок коштів зараховується на основний рахунок
+ *
+ * @see Operation.Transaction параметри транзакції
+ * @see OperationResult результат виконання операції
+ */
 public class TransactionUseCase
         implements WithArgUseCase<Operation.Transaction, Single<OperationResult>> {
 
+    /**
+     * Виконує транзакцію відповідно до наданих параметрів.
+     *
+     * @param arg параметри транзакції
+     * @return асинхронний результат виконання операції
+     * @throws NullPointerException якщо arg є null
+     */
     @NonNull
     @Override
     public Single<OperationResult> invoke(@NonNull Operation.Transaction arg) {
@@ -27,6 +54,14 @@ public class TransactionUseCase
     }
 
 
+    /**
+     * Обробляє конкретний тип транзакції.
+     *
+     * @param arg параметри транзакції
+     * @param account акаунт, з яким виконується операція
+     * @return асинхронний результат виконання операції
+     * @throws IllegalArgumentException якщо тип транзакції невідомий
+     */
     private Single<OperationResult> perform(
             @NonNull Operation.Transaction arg,
             @NonNull Account account
@@ -41,6 +76,13 @@ public class TransactionUseCase
     }
 
 
+    /**
+     * Виконує операцію зняття готівки.
+     *
+     * @param arg параметри зняття готівки
+     * @param account акаунт, з якого знімаються кошти
+     * @return асинхронний результат операції
+     */
     private Single<OperationResult>  withdrawCash(
             @NonNull Operation.Transaction.WithdrawCash arg,
             @NonNull Account account
@@ -61,6 +103,13 @@ public class TransactionUseCase
         }).flatMap(this::setATMBalance).map(it -> new OperationResult.Success());
     }
 
+    /**
+     * Виконує операцію поповнення рахунку.
+     *
+     * @param arg параметри поповнення
+     * @param account акаунт для поповнення
+     * @return результат операції
+     */
     private OperationResult topUpAccount(
             @NonNull Operation.Transaction.TopUpAccount arg,
             @NonNull Account account
@@ -70,6 +119,11 @@ public class TransactionUseCase
         return new OperationResult.Success();
     }
 
+    /**
+     * Отримує поточний баланс готівки в банкоматі.
+     *
+     * @return асинхронний результат з балансом
+     */
     private Single<Integer> getATMBalance() {
         return Single.fromCallable(() -> getPreferences().getATMBalance())
                 .subscribeOn(getSchedulers().bank())
@@ -77,6 +131,12 @@ public class TransactionUseCase
                 .flatMap(it -> it < 1 ? Single.error(new MoneyRanOutException()) : Single.just(it));
     }
 
+    /**
+     * Оновлює баланс готівки в банкоматі.
+     *
+     * @param value нове значення балансу
+     * @return асинхронний результат з оновленим балансом
+     */
     private Single<Integer> setATMBalance(int value) {
         return Single.fromCallable(() -> {
             getPreferences().setATMBalance(value);

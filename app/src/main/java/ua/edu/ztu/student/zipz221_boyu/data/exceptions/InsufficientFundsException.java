@@ -1,5 +1,9 @@
 package ua.edu.ztu.student.zipz221_boyu.data.exceptions;
 
+/**
+ * Виняток, що виникає при спробі зняття суми, яка перевищує
+ * доступний баланс на рахунку.
+ */
 public class InsufficientFundsException extends Exception {
 
     private final float maxSum;

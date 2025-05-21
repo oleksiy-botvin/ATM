@@ -1,0 +1,158 @@
+androidx.activity:activity:1.9.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.activity:activity-ktx:1.9.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.annotation:annotation:1.6.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.annotation:annotation-experimental:1.4.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.annotation:annotation-jvm:1.6.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.appcompat:appcompat:1.6.1
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.appcompat:appcompat-resources:1.6.1
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.arch.core:core-common:2.2.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.arch.core:core-runtime:2.2.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.cardview:cardview:1.0.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.collection:collection:1.1.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.collection:collection-ktx:1.1.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.concurrent:concurrent-futures:1.1.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.constraintlayout:constraintlayout:2.1.4
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.constraintlayout:constraintlayout-core:1.0.4
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.coordinatorlayout:coordinatorlayout:1.1.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.core:core:1.13.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.core:core-ktx:1.13.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.cursoradapter:cursoradapter:1.0.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.customview:customview:1.1.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.databinding:viewbinding:8.3.2
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.documentfile:documentfile:1.0.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.drawerlayout:drawerlayout:1.1.1
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.dynamicanimation:dynamicanimation:1.0.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.emoji2:emoji2:1.2.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.emoji2:emoji2-views-helper:1.2.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.fragment:fragment:1.6.2
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.fragment:fragment-ktx:1.6.2
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.interpolator:interpolator:1.0.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.legacy:legacy-support-core-utils:1.0.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.lifecycle:lifecycle-common:2.6.2
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.lifecycle:lifecycle-livedata:2.6.2
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.lifecycle:lifecycle-livedata-core:2.6.2
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.lifecycle:lifecycle-livedata-core-ktx:2.6.2
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.lifecycle:lifecycle-process:2.6.2
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.lifecycle:lifecycle-runtime:2.6.2
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.lifecycle:lifecycle-runtime-ktx:2.6.2
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.lifecycle:lifecycle-viewmodel:2.6.2
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.loader:loader:1.0.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.localbroadcastmanager:localbroadcastmanager:1.0.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.navigation:navigation-common:2.7.7
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.navigation:navigation-fragment:2.7.7
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.navigation:navigation-runtime:2.7.7
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.navigation:navigation-ui:2.7.7
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.preference:preference:1.2.1
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.print:print:1.0.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.profileinstaller:profileinstaller:1.3.1
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.recyclerview:recyclerview:1.1.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.resourceinspection:resourceinspection-annotation:1.0.1
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.savedstate:savedstate:1.2.1
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.savedstate:savedstate-ktx:1.2.1
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.slidingpanelayout:slidingpanelayout:1.2.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.startup:startup-runtime:1.1.1
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.tracing:tracing:1.0.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.transition:transition:1.4.1
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.vectordrawable:vectordrawable:1.1.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.vectordrawable:vectordrawable-animated:1.1.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.versionedparcelable:versionedparcelable:1.1.1
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.viewpager:viewpager:1.0.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.viewpager2:viewpager2:1.0.0
+ - SPDX identifier 'Apache-2.0' allowed
+androidx.window:window:1.0.0
+ - SPDX identifier 'Apache-2.0' allowed
+com.google.android.material:material:1.11.0
+ - SPDX identifier 'Apache-2.0' allowed
+com.google.errorprone:error_prone_annotations:2.15.0
+ - SPDX identifier 'Apache-2.0' allowed
+com.google.guava:listenablefuture:1.0
+ - SPDX identifier 'Apache-2.0' allowed
+io.reactivex.rxjava2:rxandroid:2.1.1
+ - SPDX identifier 'Apache-2.0' allowed
+io.reactivex.rxjava2:rxjava:2.2.21
+ - SPDX identifier 'Apache-2.0' allowed
+org.jetbrains:annotations:13.0
+ - SPDX identifier 'Apache-2.0' allowed
+org.jetbrains.kotlin:kotlin-bom:1.8.22
+ - SPDX identifier 'Apache-2.0' allowed
+org.jetbrains.kotlin:kotlin-stdlib:1.8.22
+ - SPDX identifier 'Apache-2.0' allowed
+org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22
+ - SPDX identifier 'Apache-2.0' allowed
+org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22
+ - SPDX identifier 'Apache-2.0' allowed
+org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22
+ - SPDX identifier 'Apache-2.0' allowed
+org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4
+ - SPDX identifier 'Apache-2.0' allowed
+org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.6.4
+ - SPDX identifier 'Apache-2.0' allowed
+org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4
+ - SPDX identifier 'Apache-2.0' allowed
+org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.4
+ - SPDX identifier 'Apache-2.0' allowed
+org.reactivestreams:reactive-streams:1.0.3
+ - SPDX identifier 'CC0-1.0' allowed

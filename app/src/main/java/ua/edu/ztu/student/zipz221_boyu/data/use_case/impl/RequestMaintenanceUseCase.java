@@ -11,6 +11,23 @@ import ua.edu.ztu.student.zipz221_boyu.component_provider.components.AppSchedule
 import ua.edu.ztu.student.zipz221_boyu.component_provider.components.Preferences;
 import ua.edu.ztu.student.zipz221_boyu.data.use_case.WithoutArgUseCase;
 
+/**
+ * Варіант використання для запиту технічного обслуговування банкомату.
+ *
+ * Виконує процедуру запиту на обслуговування з таймером зворотного відліку:
+ * - Запускає 60-секундний таймер
+ * - Оновлює значення таймера кожну секунду
+ * - При досягненні 0 виконує поповнення банкомату
+ *
+ * Поповнення банкомату відбувається автоматично після закінчення відліку,
+ * встановлюючи баланс готівки на рівні 20000.
+ *
+ * Операція повертає Observable, який емітить значення таймера
+ * від 60 до 0 з інтервалом в 1 секунду.
+ *
+ * @see Preferences для управління балансом банкомату
+ * @see AppSchedulers для управління асинхронними операціями
+ */
 public class RequestMaintenanceUseCase implements WithoutArgUseCase<Observable<Long>> {
 
     @NonNull
@@ -23,6 +40,11 @@ public class RequestMaintenanceUseCase implements WithoutArgUseCase<Observable<L
         return ComponentProvider.Companion.getInstance().getPreferences();
     }
 
+    /**
+     * Запускає процедуру запиту на обслуговування.
+     *
+     * @return Observable, що емітить значення таймера зворотного відліку
+     */
     @NonNull
     @Override
     public Observable<Long> invoke() {
@@ -31,6 +53,12 @@ public class RequestMaintenanceUseCase implements WithoutArgUseCase<Observable<L
                 .flatMapSingle(this::check);
     }
 
+    /**
+     * Перевіряє значення таймера та виконує поповнення при необхідності.
+     *
+     * @param value поточне значення таймера
+     * @return Single з поточним значенням таймера
+     */
     private Single<Long> check(Long value) {
         if (value > 1) return Single.just(value);
         return Single.fromCallable(() -> {

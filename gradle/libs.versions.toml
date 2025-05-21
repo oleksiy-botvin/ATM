@@ -9,6 +9,7 @@ navigation = "2.7.7"
 preference = "1.2.1"
 rxjava2Java = "2.2.21"
 rxjava2Android = "2.1.1"
+licensee = "1.8.0"
 
 [libraries]
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
@@ -25,4 +26,5 @@ rxjava2-android = { group = "io.reactivex.rxjava2", name = "rxandroid", version.
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 navigation = { id = "androidx.navigation.safeargs", version.ref = "navigation" }
+licensee = { id = "app.cash.licensee", version.ref = "licensee" }
 

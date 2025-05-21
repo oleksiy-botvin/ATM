@@ -2,6 +2,12 @@ package ua.edu.ztu.student.zipz221_boyu.data.exceptions;
 
 import androidx.annotation.NonNull;
 
+/**
+ * Виняток, що виникає коли в банкоматі недостатньо купюр
+ * для виконання операції зняття готівки.
+ * Відрізняється від MoneyRanOutException тим, що гроші ще є,
+ * але їх кількість менша за запитувану суму.
+ */
 public class MoneyRunsOutException extends Exception {
 
     private final int moneyLeft;

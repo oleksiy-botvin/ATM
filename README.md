@@ -1,98 +1,119 @@
-# Опис
-Додаток, який імітує роботу банкомату. З таким функціоналом:
-- Переглянути баланс
-- Зняти готівку
-- Переказ коштів
-- Змінити ПІН-код
+# ATM Android додаток
 
-За замовчуванням банкомат містить 20 000 грн., а коли значення стає менше 200 грн. ініціює процес поповнення свого балансу.
+## Опис
+Android додаток для симуляції роботи банкомату (ATM). Цей проєкт розроблений для демонстрації основних операцій, які можна виконувати через банкомат.
 
-# Для тестування:
-- доступна [atm-test.apk](https://drive.google.com/file/d/1N0NSfTuTW2vNn7NHuimL0jLiRf12tEAv/view?usp=sharing)
-- при натисканні кнопки «Вставити картку» відкриває діалогове вікно зі списком тестових карток
+---
 
-# Programming Principles
-- ## DRY (Don`t repeat yourself)
-  повторення коду в програмі зведено до мінімуму
-- ## KISS (Keep It Simple, Stupid)
-  Код є простим і зрозумілим, використовуються базові структури даних, зрозумілі назви класів та класи мають просту та не велику за обсягом коду реалізацію.
-- ## SOLID
-  - ### Single responsibility principle
-    Клас [`GetBalanceUseCase`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/data/use_case/impl/GetBalanceUseCase.java) дотримуэться данного принципу. `GetBalanceUseCase` має єдиний публічний метод [`invoke`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/data/use_case/impl/GetBalanceUseCase.java#L16), успадкований від  [`WithArgUseCase`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/data/use_case/WithArgUseCase.java) та виконує лише одне завдання, а семе повертає залишок на раханку
-  - ### Open/closed principle
-    Абстрактний клас [`BasePresenterImpl`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/mvp/base/BasePresenterImpl.java) дотримується цього принципу. [Дочірні класи](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/mvp/screen) розширюють його функціональність, не впливаючи на батьківські методи
-  - ### Liskov substitution principle/Interface segregation principle
-    Інтерфейс [`ComponentProvider`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/component_provider/ComponentProvider.java) та клас [`ComponentProviderImpl`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/component_provider/impl/ComponentProviderImpl.java) дотримуються цього принципу. Усі звернення до ComponentProvider можна замінити на зверненя до ComponentProviderImpl і навпаки. Приклади звернення:
-    - [`BasePresenterImpl`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/mvp/base/BasePresenterImpl.java#L47-L75)
-    - [`ChangePINUseCase`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/data/use_case/impl/ChangePINUseCase.java#L16)
-    - [`AccountRepository`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/data/repository/impl/AccountRepository.java#L17)
-  - ### Dependency inversion principle
-    У програмі доступ до окремих компонентів реалізовано через певні інтерфейси. Завдяки чому, звертаючись до них, програма не прив’язується до конкретної реалізації, а лише до абстрактної сутності, яка описує їх функціональність 
+## Структура проєкту
+├── app/ # Основний код додатку  
+│ ├── src/  
+│ │ ├── main/  
+│ │ ├── java/ua/edu/ztu/student/zipz221_boyu/  
+│ │ │ ├── data/ # Шар даних  
+│ │ │ ├── mvp/ # Model-View-Presenter компоненти  
+│ │ │ ├── ui/ # Користувацький інтерфейс  
+│ │ │ ├── util/ # Утиліти та допоміжні класи  
+│ │ │ ├── test/ # Тестові класи  
+│ │ │ ├── component_provider/ # Провайдери компонентів  
+│ │ │ └── App.java # Головний клас додатку  
+│ │ ├── res/ # Ресурси додатку  
+│ │ └── AndroidManifest.xml  
+│ ├── build.gradle # Налаштування збірки модуля  
+│ └── proguard-rules.pro  
+├── doc/ # Документація  
+├── example/ # Приклади використання  
+├── gradle/ # Gradle wrapper файли  
+├── license/ # Результати перевірки ліцензії  
+└── build.gradle # Головний build файл
 
-    Перелік таких інтерфейси:
-    - [`ComponentProvider`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/component_provider/ComponentProvider.java)
-    - [`Preferences`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/component_provider/components/Preferences.java)
-    - [`AppSchedulers`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/component_provider/components/AppSchedulers.java)
-    - [`Repositories`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/component_provider/components/Repositories.java)
-    - [`UseCases`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/component_provider/components/UseCases.java)
-    - [`ATMWorker`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/component_provider/components/ATMWorker.java)
-    - [`WithArgRepository`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/data/repository/WithArgRepository.java)
-    - [`WithoutArgRepository`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/data/repository/WithoutArgRepository.java)
-    - [`WithArgUseCase`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/data/use_case/WithArgUseCase.java)
-    - [`WithoutArgUseCase`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/data/use_case/WithoutArgUseCase.java)
-    - [`BaseView`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/mvp/base/BaseMvp.java#L9) та всі його дочірні інтерфейси
-    - [`BasePresenter`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/mvp/base/BaseMvp.java#L13) та всі його дочірні інтерфейси
-      
-    #### Приклад такої взаємодії
-    ```
-    @NonNull
-    @Override
-    public WithoutArgUseCase<Single<List<Account>>> getAllAccounts() {
-        return new GetAllAccountsUseCase();
-    }
-    ```
-    ```
-    @Override
-    public void onInsertCardClick() {
-        withView(view -> {view.setLocked(true);});
-        subscriptions(() -> getUseCases()
-                .getAllAccounts()
-                .invoke()
-                .observeOn(getSchedulers().ui())
-                .subscribe(this::onAllAccounts, this::onError)
+--- 
 
-        );
-    }
-    ```
-    
-    В методі [`onInsertCardClick()`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/mvp/screen/login/LoginPresenter.java#L47)
-  описана логіка отримання усіх доступних рахункуів. 
-  Для цьго викликається метод [`getUseCases().getAllAccounts()`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/component_provider/impl/components/UseCasesImpl.java#L31), 
-  який повертає інтерфейс `WithoutArgUseCase<Single<List<Account>>>` 
-  (цей інтерфейс описує, завдяки дженеріку, що його метод `invoke()` повинен повернути об'єкт `Single<List<Account>>`). 
-  Під час виклику методу `getUseCases().getAllAccounts()` створюється та повертається об’єкт `GetAllAccountsUseCase`, 
-  який реалізує цей інтерфейс. За допомогою цієї взаємодії, якщо необхідно, 
-  об’єкт `GetAllAccountsUseCase` можна замінити на інший (за умови, що він реалізує інтерфейс `WithoutArgUseCase<Single<List<Account>>>`), 
-  що не вплине на метод `onInsertCardClick()`, що ніяк не вплини на метод `onInsertCardClick()`.
+## Встановлення
+1. Склонуйте репозиторій:
+```
+git clone https://github.com/oleksiy-botvin/ATM.git
+```
+2. Відкрийте проєкт в Android Studio
 
-- ## YAGNI (You Ain't Gonna Need It)
-  Програма не містить функціоналу, який не використовується
+3. Синхронізуйте проєкт з Gradle файлами
 
-# Design Patterns
-- ## Observer Pattern
-  Патр реалізовано в `ATMWorkerImpl` у методі 
-[`observeState()`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/component_provider/impl/components/atm_worker/ATMWorkerImpl.java#L52) 
-за допомогою бібліотеки rxjava2 і класів, успадкованих від [`ATMState`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/data/entity/atm_state/ATMState.java). 
-[Приклад використання](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/mvp/screen/menu/MenuPresenter.java#L13-L36)
+4. Запустіть додаток на емуляторі або реальному пристрої
 
-- ## MVP (Model-View-Presenter)
-  Патр реалізовано в класах, розміщених у пакетах [`mvp`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/mvp) та [`ui/fragment`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/ui/fragment).
-На основі цьому патерну, конретна реалізація "Presenter" (бізнес-логіка) не прив'язна до конкретної реалізації "View" (користувацький інтерфейс) і навпаки
+Також доступна тестова версія додатку: [app.apk](example/app.apk)
 
-- ## Use Case
-  Реалізаця патерну знаходиться у пакеті [`data/use_case`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/data/use_case)
-  
-  ### Приклад:
-  Клас [`GetBalanceUseCase`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/data/use_case/impl/GetBalanceUseCase.java) 
-описує логіку отримання інформації про стан рахунку за номером картки шляхом виклику методу 
-[`invoke(new Operation.ViewBalance(...))`](app/src/main/java/ua/edu/ztu/student/zipz221_boyu/data/use_case/impl/GetBalanceUseCase.java#L16)
+---
+
+## Використання
+Детальну інформацію про використання додатку можна знайти в директорії [doc](doc)
+
+---
+
+## Документація API
+
+Повна документація API доступна за посиланням: [api](https://app.swaggerhub.com/apis-docs/oleksiybotvin/ATM/1.0.0)
+
+---
+
+## Ліцензія
+Цей проєкт розповсюджується під ліцензією Apache License 2.0. Це означає, що ви можете:
+- Використовувати код для комерційних цілей
+- Модифікувати код
+- Розповсюджувати код
+- Використовувати код в приватних проєктах
+- Використовувати патенти
+
+За умови:
+- Збереження копірайтів та ліцензії
+- Зазначення змін у файлах
+- Включення повідомлення про ліцензію у розповсюдження
+
+Повний текст ліцензії доступний у файлі [LICENSE.md](LICENSE.md).
+
+---
+
+## Ліцензійна перевірка
+Результат перевірки ліцензії можна знайти в директорії [license](license).
+
+---
+
+### Повторна перевірка
+Для перевірки ліцензійної чистоти проєкту виконайте команду:
+```
+./gradlew licensee
+```
+Результати перевірки будуть доступні в директорії: [licensee](app/build/reports/licensee)
+
+---
+
+## Політика конфіденційності
+Додаток забезпечує повну конфіденційність користувачів. Основні положення:
+- Вся інформація зберігається локально на пристрої
+- Не збирається особиста інформація
+- Не використовується геолокація
+- Не збираються паролі та облікові дані
+
+Дивіться [PRIVACY_POLICY.md](PRIVACY_POLICY.md) для отримання детальної інформації.
+
+---
+
+## Розробка
+### Необхідні інструменти
+- Android Studio
+- JDK 21
+- Android SDK
+
+### Збірка проєкту
+```
+./gradlew build
+```
+
+---
+
+## Контакти
+Якщо у вас виникли питання або пропозиції, будь ласка, створіть Issue в репозиторії проєкту.
+
+---
+
+## Автор
+Олексій Ботвін ЗІПЗ-22-1

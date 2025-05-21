@@ -1,5 +1,10 @@
 package ua.edu.ztu.student.zipz221_boyu.data.exceptions.pin;
 
+/**
+ * Виняток, що виникає при невдалій спробі зміни PIN-коду.
+ * Може виникати через різні причини, такі як невідповідність
+ * вимогам безпеки або технічні проблеми.
+ */
 public class PinCodeChangeException extends PinCodeException {
 
     public PinCodeChangeException(Type type) {

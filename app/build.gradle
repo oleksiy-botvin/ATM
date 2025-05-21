@@ -1,6 +1,12 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.navigation)
+    alias(libs.plugins.licensee)
+}
+
+licensee {
+    allow("Apache-2.0")
+    allow("CC0-1.0")
 }
 
 android {
@@ -29,6 +35,34 @@ android {
     buildFeatures {
         viewBinding true
         buildConfig true
+    }
+}
+
+afterEvaluate {
+    tasks.register("javadoc", Javadoc) {
+        def variant = android.applicationVariants.find { it.name == "debug" }
+
+        def javaDirs = variant.sourceSets.collect { it.javaDirectories }.flatten()
+        javaDirs += fileTree(dir: "$buildDir/generated/source").files // kapt, databinding и т.д.
+        javaDirs += fileTree(dir: "$buildDir/generated/source/buildConfig/debug").files
+        javaDirs += fileTree(dir: "$buildDir/generated/source/r/debug").files
+        javaDirs += fileTree(dir: "$buildDir/generated/source/r/debug").files
+        javaDirs += fileTree(dir: "$buildDir/generated/data_binding_base_class_source_out/debug/out").files
+
+        source = javaDirs
+
+        classpath += files(variant.javaCompileProvider.get().classpath)
+        classpath += files(android.bootClasspath)
+
+        exclude '**/R.java', '**/R2.java'
+
+        options.encoding = 'UTF-8'
+        options.charSet = 'UTF-8'
+        options.links("https://developer.android.com/reference/")
+        options.memberLevel = JavadocMemberLevel.PUBLIC
+
+        failOnError = false
+        destinationDir = file("$buildDir/docs/javadoc")
     }
 }
 

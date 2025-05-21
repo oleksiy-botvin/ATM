@@ -10,8 +10,19 @@ import ua.edu.ztu.student.zipz221_boyu.data.entity.card.Card;
 import ua.edu.ztu.student.zipz221_boyu.data.exceptions.CardHasExpiredException;
 import ua.edu.ztu.student.zipz221_boyu.mvp.base.BasePresenterImpl;
 
+/**
+ * Презентер для екрану входу в систему банкомату.
+ * Управляє процесом авторизації користувача та перевірки стану банкомату.
+ */
 public class LoginPresenter extends BasePresenterImpl<LoginMvp.View> implements LoginMvp.Presenter {
 
+    /**
+     * Викликається при приєднанні View.
+     * Налаштовує початковий стан екрану та підписується на оновлення стану банкомату.
+     *
+     * @param view об'єкт відображення
+     * @throws NullPointerException якщо view є null
+     */
     @Override
     protected void onViewAttached(@NonNull LoginMvp.View view) {
         super.onViewAttached(view);
@@ -24,6 +35,12 @@ public class LoginPresenter extends BasePresenterImpl<LoginMvp.View> implements 
         );
     }
 
+    /**
+     * Обробляє новий стан банкомату.
+     *
+     * @param it поточний стан банкомату
+     * @throws NullPointerException якщо it є null
+     */
     private void onNewState(@NonNull ATMState it) {
         withView(view -> {
             if (it instanceof ATMState.WaitingForMoneyDelivery) {
@@ -43,6 +60,10 @@ public class LoginPresenter extends BasePresenterImpl<LoginMvp.View> implements 
         });
     }
 
+    /**
+     * Обробляє натискання кнопки вставки картки.
+     * Запитує список доступних рахунків.
+     */
     @Override
     public void onInsertCardClick() {
         withView(view -> {view.setLocked(true);});
@@ -51,10 +72,16 @@ public class LoginPresenter extends BasePresenterImpl<LoginMvp.View> implements 
                 .invoke()
                 .observeOn(getSchedulers().ui())
                 .subscribe(this::onAllAccounts, this::onError)
-
         );
     }
 
+    /**
+     * Обробляє вибір картки користувачем.
+     * Виконує перевірку картки.
+     *
+     * @param card обрана картка
+     * @throws NullPointerException якщо card є null
+     */
     @Override
     public void onCardSelected(Card card) {
         subscriptions(() -> getATMWorker()
@@ -64,10 +91,21 @@ public class LoginPresenter extends BasePresenterImpl<LoginMvp.View> implements 
         );
     }
 
+    /**
+     * Обробляє отримання списку доступних рахунків.
+     *
+     * @param items список рахунків
+     * @throws NullPointerException якщо items є null
+     */
     private void onAllAccounts(@NonNull List<Account> items) {
         withView(view -> view.showSelectCardDialog(items));
     }
 
+    /**
+     * Обробляє помилки перевірки картки.
+     *
+     * @param t виключення, що виникло при перевірці
+     */
     private void onCheckCardError(Throwable t) {
         withView(view -> {
             if (!(t instanceof CardHasExpiredException)) view.showHintNotReadyToWork();
@@ -75,6 +113,11 @@ public class LoginPresenter extends BasePresenterImpl<LoginMvp.View> implements 
         });
     }
 
+    /**
+     * Обробляє загальні помилки.
+     *
+     * @param t виникле виключення
+     */
     private void onError(Throwable t) {
         withView(LoginMvp.View::showHintNotReadyToWork);
     }

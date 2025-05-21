@@ -1,5 +1,10 @@
 package ua.edu.ztu.student.zipz221_boyu.data.exceptions.pin;
 
+/**
+ * Виняток, що виникає при введенні неправильного PIN-коду.
+ * Сигналізує про невідповідність введеного коду
+ * збереженому значенню PIN-коду карти.
+ */
 public class InvalidPinCodeException extends PinCodeException {
 
     private final boolean isLastAttempt;

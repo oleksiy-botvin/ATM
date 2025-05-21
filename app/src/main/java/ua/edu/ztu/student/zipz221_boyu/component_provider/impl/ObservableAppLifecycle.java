@@ -13,10 +13,34 @@ import java.util.concurrent.atomic.AtomicInteger;
 import io.reactivex.Observable;
 import io.reactivex.subjects.BehaviorSubject;
 
+/**
+ * Компонент для спостереження за життєвим циклом Android-додатку.
+ *
+ * Надає можливість реактивного спостереження за станом додатку через RxJava Observable.
+ * Відслідковує створення та знищення активностей для визначення загального стану додатку.
+ *
+ * Стани життєвого циклу:
+ * - INITIALIZED: Початковий стан після створення компонента
+ * - STARTED: Перша активність створена (додаток запущено)
+ * - STOPPED: Всі активності знищені (додаток зупинено)
+ *
+ * Типові випадки використання:
+ * - Моніторинг стану додатку
+ * - Керування глобальними ресурсами
+ * - Логування життєвого циклу
+ * - Реакція на зміни стану додатку
+ */
 public class ObservableAppLifecycle {
 
+    /** Поток подій для відстеження стану життєвого циклу додатку */
     @NonNull private final BehaviorSubject<State> behavior;
-    
+
+
+    /**
+     * Створює новий екземпляр спостерігача за життєвим циклом.
+     *
+     * @param application екземпляр Android Application для реєстрації колбеків
+     */
     ObservableAppLifecycle(Application application) {
         behavior = BehaviorSubject.createDefault(State.INITIALIZED);
         AtomicInteger count = new AtomicInteger(0);
@@ -61,11 +85,24 @@ public class ObservableAppLifecycle {
         });
     }
 
+    /**
+     * Повертає Observable для спостереження за станом життєвого циклу.
+     *
+     * @return Observable, що емітить події зміни стану
+     */
     public Observable<State> observe() {
         return behavior;
     }
 
+    /**
+     * Можливі стани життєвого циклу додатку.
+     */
     public enum State {
-        INITIALIZED, STARTED, STOPPED
+        /** Початковий стан після створення */
+        INITIALIZED,
+        /** Перша активність створена */
+        STARTED,
+        /** Всі активності знищені */
+        STOPPED
     }
 }

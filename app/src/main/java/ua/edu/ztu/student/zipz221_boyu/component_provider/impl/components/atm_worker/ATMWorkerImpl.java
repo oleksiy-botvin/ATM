@@ -27,8 +27,13 @@ import ua.edu.ztu.student.zipz221_boyu.data.entity.atm_state.ATMState;
 import ua.edu.ztu.student.zipz221_boyu.data.entity.card.Card;
 import ua.edu.ztu.student.zipz221_boyu.data.entity.operation.Operation;
 import ua.edu.ztu.student.zipz221_boyu.data.entity.operation.OperationResult;
+import ua.edu.ztu.student.zipz221_boyu.data.exceptions.InsufficientFundsException;
 import ua.edu.ztu.student.zipz221_boyu.data.exceptions.MoneyRunsOutException;
 
+/**
+ * Реалізація інтерфейсу {@link ATMWorker} для управління основними операціями банкомату.
+ * Відповідає за координацію та виконання всіх банківських операцій.
+ */
 public class ATMWorkerImpl implements ATMWorker {
 
     private BehaviorSubject<ATMState> stateBehaviorSubject;
@@ -47,24 +52,47 @@ public class ATMWorkerImpl implements ATMWorker {
         );
     }
 
+    /**
+     * Спостерігає за поточним станом банкомату.
+     *
+     * @return Observable потік станів банкомату
+     */
     @NonNull
     @Override
     public Observable<ATMState> observeState() {
         return stateBehaviorSubject();
     }
 
+    /**
+     * Перевіряє валідність картки.
+     *
+     * @param arg Картка для перевірки
+     * @return Single з результатом перевірки картки
+     */
     @NonNull
     @Override
     public Single<Card> checkCard(@NonNull Card arg) {
         return getUseCases().checkCard().invoke(arg);
     }
 
+    /**
+     * Перевіряє PIN-код картки.
+     *
+     * @param arg Аргументи перевірки PIN-коду (картка та код)
+     * @return Completable результат перевірки
+     */
     @NonNull
     @Override
     public Completable checkPIN(@NonNull CheckPINArg arg) {
         return getUseCases().checkPIN().invoke(arg);
     }
 
+    /**
+     * Виконує банківську операцію.
+     *
+     * @param operation Операція для виконання
+     * @return Single з результатом операції
+     */
     @NonNull
     @Override
     public Single<OperationResult> performOperation(@NonNull Operation operation) {
@@ -77,6 +105,13 @@ public class ATMWorkerImpl implements ATMWorker {
         return ComponentProvider.Companion.getInstance().getUseCases();
     }
 
+    /**
+     * Ініціалізує або повертає існуючий BehaviorSubject для спостереження за станом.
+     * Використовує блокування для thread-safety.
+     *
+     * @return BehaviorSubject для публікації станів банкомату
+     */
+
     private BehaviorSubject<ATMState> stateBehaviorSubject() {
         if (stateBehaviorSubject == null || stateBehaviorSubject.hasComplete()) {
             publishLock.writeLock().lock();
@@ -88,6 +123,10 @@ public class ATMWorkerImpl implements ATMWorker {
         return stateBehaviorSubject;
     }
 
+    /**
+     * Перевіряє готовність банкомату до роботи.
+     * Оновлює стан залежно від результату перевірки.
+     */
     private void checkReadinessForWork() {
         subscriptions(() -> getUseCases()
                 .checkReadinessForWork()
@@ -102,6 +141,12 @@ public class ATMWorkerImpl implements ATMWorker {
         );
     }
 
+    /**
+     * Обробляє ситуацію коли банкомат не готовий до роботи.
+     * Особлива обробка випадку MoneyRunsOutException.
+     *
+     * @param t Виняток, що спричинив неготовність
+     */
     private void onNotReadyToWork(Throwable t) {
         if (!(t instanceof MoneyRunsOutException)) {
             onNextState(new ATMState.NotReady(t));
@@ -124,6 +169,12 @@ public class ATMWorkerImpl implements ATMWorker {
         );
     }
 
+    /**
+     * Безпечно публікує новий стан банкомату.
+     * Використовує ReadLock для thread-safety.
+     *
+     * @param it Новий стан банкомату
+     */
     private void onNextState(@NonNull ATMState it) {
         BehaviorSubject<ATMState> behavior = stateBehaviorSubject();
         publishLock.readLock().lock();
@@ -131,10 +182,20 @@ public class ATMWorkerImpl implements ATMWorker {
         publishLock.readLock().unlock();
     }
 
+    /**
+     * Додає нову підписку до CompositeDisposable.
+     *
+     * @param add Постачальник нової підписки
+     */
     private void subscriptions(@NonNull Supplier<Disposable> add) {
         subscriptions.add(add.get());
     }
 
+    /**
+     * Обробляє зміни життєвого циклу додатку.
+     *
+     * @param state Новий стан життєвого циклу
+     */
     private void onAppLifecycle(@NonNull ObservableAppLifecycle.State state) {
         switch (state) {
             case INITIALIZED:

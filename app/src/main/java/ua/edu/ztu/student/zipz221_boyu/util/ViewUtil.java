@@ -7,8 +7,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Утилітний клас для роботи з View-компонентами Android.
+ */
 public class ViewUtil {
 
+    /**
+     * Повертає список всіх View, включаючи вкладені, починаючи з заданого view.
+     * Обхід виконується рекурсивно для всіх ViewGroup.
+     *
+     * @param view кореневий view-компонент для пошуку
+     * @return список всіх знайдених view або порожній список якщо view == null
+     */
     public static List<View> allViews(View view) {
         if (view == null) return Collections.emptyList();
 
